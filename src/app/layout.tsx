@@ -4,7 +4,7 @@ import '@/styles/windows-xp.css';
 
 export const metadata: Metadata = {
   title: "Krishna Kumar Portfolio",
-  description: "My Windows XP themed portfolio",
+  description: "My portfolio",
 };
 
 export default function RootLayout({
