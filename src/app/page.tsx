@@ -73,7 +73,13 @@ function PortfolioContent() {
   // Update time
   useEffect(() => {
     const updateTime = () => {
-      setCurrentTime(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+      const now = new Date();
+      const day = now.toLocaleDateString('en-US', { weekday: 'long' });
+      const date = now.getDate();
+      const month = now.toLocaleDateString('en-US', { month: 'long' });
+      const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+      
+      setCurrentTime(`${day}, ${date} ${month} ${time}`);
     };
     
     // Initial update
