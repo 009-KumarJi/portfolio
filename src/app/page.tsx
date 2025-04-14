@@ -14,6 +14,8 @@ import { ResumeContent } from "@/components/windows-xp/ResumeContent";
 import { WorkExperienceContent } from "@/components/windows-xp/WorkExperienceContent";
 import dynamic from 'next/dynamic';
 import { StartMenu } from "@/components/windows-xp/StartMenu";
+import { playSoundEffects } from "@/constants/sounds";
+import { LoginScreen } from "@/components/windows-xp/LoginScreen";
 
 // Use dynamic import with ssr: false to prevent hydration mismatch
 const Portfolio = dynamic(() => Promise.resolve(PortfolioContent), {
@@ -56,6 +58,16 @@ function PortfolioContent() {
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Play startup sound on component mount
+  useEffect(() => {
+    // Small delay to ensure it plays after component mounts
+    const timer = setTimeout(() => {
+      playSoundEffects.startup();
+    }, 500);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   // Update time
@@ -186,6 +198,7 @@ function PortfolioContent() {
   };
 
   const restoreWindow = (windowId: keyof Omit<WindowsState, 'minimized'>) => {
+    playSoundEffects.maximize();
     setWindows(prev => ({
       ...prev,
       minimized: {
@@ -198,6 +211,7 @@ function PortfolioContent() {
 
   const toggleStartMenu = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent the global click handler from closing the menu immediately
+    playSoundEffects.click();
     setStartMenuOpen(!startMenuOpen);
   };
 
@@ -234,7 +248,7 @@ function PortfolioContent() {
       style={{ backgroundImage: `url(${isMobile ? ICONS.MY_MOB_PHOTU : ICONS.MY_PHOTU})`, backgroundSize: 'cover' }}
     >
       {/* Desktop Icons */}
-      <div className={`p-4 ${isMobile ? 'grid grid-cols-3 gap-2 md:grid-cols-1 md:gap-4' : 'grid grid-cols-1 gap-4'}`}>
+      <div className={`p-4 ${isMobile ? 'grid grid-cols-3 gap-2 md:grid-cols-1 md:gap-4' : 'w-[200px] grid grid-cols-1 gap-4'}`}>
         <DesktopIcon
           icon={ICONS.MY_COMPUTER}
           label="About Me"
@@ -431,5 +445,33 @@ function PortfolioContent() {
 
 // Simple export for the main page
 export default function Home() {
-  return <Portfolio />;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  // Check if user is already logged in
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const loggedInStatus = localStorage.getItem('isLoggedIn');
+      if (loggedInStatus === 'true') {
+        setIsLoggedIn(true);
+      }
+    }
+  }, []);
+
+  const handleLogin = () => {
+    // Set login state in localStorage to persist across page refreshes
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('isLoggedIn', 'true');
+    }
+    setIsLoggedIn(true);
+  };
+  
+  return (
+    <>
+      {isLoggedIn ? (
+        <Portfolio />
+      ) : (
+        <LoginScreen onLogin={handleLogin} userName="Krishna Kumar" />
+      )}
+    </>
+  );
 }

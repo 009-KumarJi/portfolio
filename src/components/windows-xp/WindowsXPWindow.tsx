@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { WindowProps } from "@/types";
+import { playSoundEffects } from "@/constants/sounds";
 
 export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = ({
   title,
@@ -81,7 +82,7 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
         });
       }
     }
-  }, [isMobile, initialWidth, initialHeight]);
+  }, [isMobile, initialWidth, initialHeight, isMobileDragging]);
 
   // Handle touch events for mobile dragging
   useEffect(() => {
@@ -183,6 +184,7 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
 
   const handleMinimize = (e: React.MouseEvent) => {
     e.stopPropagation();
+    playSoundEffects.minimize();
     if (onMinimize) {
       onMinimize();
     }
@@ -202,6 +204,7 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
         y: previousState.y
       });
       setIsMaximized(false);
+      playSoundEffects.minimize();
     } else {
       // Save current state
       setPreviousState({
@@ -218,6 +221,7 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
       });
       setPosition({ x: 0, y: 0 });
       setIsMaximized(true);
+      playSoundEffects.maximize();
     }
     
     if (onMaximize) {
@@ -227,6 +231,7 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
 
   const handleClose = (e: React.MouseEvent) => {
     e.stopPropagation();
+    playSoundEffects.closeWindow();
     if (onClose) {
       onClose();
     }

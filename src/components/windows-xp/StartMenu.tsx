@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ICONS } from '@/constants/icons';
 import { WindowsState } from '@/types';
+import { playSoundEffects, SOUNDS, playSound } from '@/constants/sounds';
 
 interface StartMenuProps {
   isOpen: boolean;
@@ -23,7 +24,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
   
   return (
     <div 
-      className="absolute bottom-[30px] left-0 z-20 w-[320px] border border-[#0A246A] shadow-lg bg-[#ECE9D8]"
+      className={`absolute bottom-[30px] left-0 z-20 ${isMobile ? 'w-[280px]' : 'w-[320px]'} border border-[#0A246A] shadow-lg bg-[#ECE9D8]`}
       onClick={(e) => e.stopPropagation()}
     >
       <div className="h-12 bg-gradient-to-b from-[#235AD1] to-[#4591D6] px-2 py-1 flex items-center">
@@ -44,6 +45,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
             onClick={() => {
+              playSoundEffects.click();
               openWindow("about");
               onClose();
             }}
@@ -58,6 +60,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
             onClick={() => {
+              playSoundEffects.click();
               openWindow("projects");
               onClose();
             }}
@@ -72,6 +75,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
             onClick={() => {
+              playSoundEffects.click();
               openWindow("skills");
               onClose();
             }}
@@ -86,6 +90,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
             onClick={() => {
+              playSoundEffects.click();
               openWindow("contact");
               onClose();
             }}
@@ -100,6 +105,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
             onClick={() => {
+              playSoundEffects.click();
               openWindow("resume");
               onClose();
             }}
@@ -114,6 +120,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
             onClick={() => {
+              playSoundEffects.click();
               openWindow("workExperience");
               onClose();
             }}
@@ -139,7 +146,12 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
-            onClick={() => handleExternalNavigation('https://linkedin.com/in/krishna-kumar-975b25186')}
+            onClick={() => {
+              playSound(SOUNDS.SHUTDOWN);
+              setTimeout(() => {
+                handleExternalNavigation('https://linkedin.com/in/krishna-kumar-975b25186');
+              }, 1000);
+            }}
           >
             <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center mr-2 text-white font-bold text-xs">
               X
