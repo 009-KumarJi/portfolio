@@ -1,26 +1,185 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ECE9D8;
+  --foreground: #000000;
+  --win-xp-blue: #245EDC;
+  --win-xp-green: #2BBF3F;
+  --win-xp-title-active: linear-gradient(to bottom, #0A246A, #3A6EA5);
+  --win-xp-title-inactive: linear-gradient(to bottom, #7F97AE, #B5C7DE);
+  --win-xp-border: #0A246A;
+  --win-xp-button: #D9D4C8;
+  --win-xp-button-hover: #E3E1D3;
+  --win-xp-taskbar: #0F5DD5;
+  --win-xp-start: #4C9E56;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Tahoma", sans-serif;
+  --font-mono: "Lucida Console", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1E2F44;
+    --foreground: #FFFFFF;
   }
+}
+
+@font-face {
+  font-family: 'Tahoma';
+  src: local('Tahoma');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lucida Console';
+  src: local('Lucida Console');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Tahoma, Arial, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.win-xp-window {
+  border: 1px solid var(--win-xp-border);
+  border-radius: 6px 6px 0 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+.win-xp-titlebar {
+  background: var(--win-xp-title-active);
+  color: white;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.win-xp-titlebar-inactive {
+  background: var(--win-xp-title-inactive);
+}
+
+.win-xp-button {
+  background-color: var(--win-xp-button);
+  border: 1px solid #888888;
+  border-radius: 3px;
+  padding: 2px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.win-xp-button:hover {
+  background-color: var(--win-xp-button-hover);
+}
+
+.win-xp-desktop {
+  width: 100%;
+  height: calc(100vh - 30px);
+  background-image: url('/winxp-wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.win-xp-taskbar {
+  height: 30px;
+  background-color: var(--win-xp-taskbar);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.win-xp-start-button {
+  background-color: var(--win-xp-start);
+  color: white;
+  font-weight: bold;
+  padding: 2px 10px;
+  height: 24px;
+  margin-left: 2px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.win-xp-start-button:hover {
+  background-color: #65B467;
+}
+
+.win-xp-icon {
+  width: 32px;
+  height: 32px;
+  margin: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  cursor: pointer;
+}
+
+.win-xp-icon img {
+  margin-bottom: 4px;
+}
+
+.win-xp-content {
+  padding: 10px;
+  height: calc(100% - 24px);
+  overflow: auto;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 border border-gray-300;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #dceafe, #bbcef1, #bbcef1, #dceafe);
+  border: 1px solid #a0a0a0;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-button {
+  @apply bg-gray-200 border border-gray-400;
+  height: 16px;
+  width: 16px;
+}
+
+/* Custom Windows XP utility classes */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  }
+  
+  .win-xp-window-shadow {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
 }
