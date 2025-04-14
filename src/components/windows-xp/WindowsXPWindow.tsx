@@ -130,14 +130,14 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
     };
 
     if (headerElement && isMobile) {
-      headerElement.addEventListener('touchstart', handleTouchStart);
+      headerElement.addEventListener('touchstart', handleTouchStart as EventListener);
       window.addEventListener('touchmove', handleTouchMove, { passive: false });
       window.addEventListener('touchend', handleTouchEnd);
     }
 
     return () => {
       if (headerElement && isMobile) {
-        headerElement.removeEventListener('touchstart', handleTouchStart);
+        headerElement.removeEventListener('touchstart', handleTouchStart as EventListener);
         window.removeEventListener('touchmove', handleTouchMove);
         window.removeEventListener('touchend', handleTouchEnd);
       }

@@ -10,10 +10,10 @@ import { AboutContent } from "@/components/windows-xp/AboutContent";
 import { ProjectsContent } from "@/components/windows-xp/ProjectsContent";
 import { SkillsContent } from "@/components/windows-xp/SkillsContent";
 import { ContactContent } from "@/components/windows-xp/ContactContent";
-import { StartMenu } from "@/components/windows-xp/StartMenu";
 import { ResumeContent } from "@/components/windows-xp/ResumeContent";
 import { WorkExperienceContent } from "@/components/windows-xp/WorkExperienceContent";
 import dynamic from 'next/dynamic';
+import { StartMenu } from "@/components/windows-xp/StartMenu";
 
 // Use dynamic import with ssr: false to prevent hydration mismatch
 const Portfolio = dynamic(() => Promise.resolve(PortfolioContent), {
