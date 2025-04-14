@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import '@/styles/windows-xp.css';
 
 export const metadata: Metadata = {
   title: "Krishna Kumar Portfolio",
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         {children}
       </body>
     </html>

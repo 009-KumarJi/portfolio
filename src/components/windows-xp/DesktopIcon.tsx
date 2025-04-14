@@ -3,25 +3,27 @@
 import Image from "next/image";
 import { DesktopIconProps } from "@/types";
 
-export const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, onClick }) => {
+export const DesktopIcon: React.FC<DesktopIconProps & { isMobile?: boolean }> = ({ 
+  icon, 
+  label, 
+  onClick,
+  isMobile = false
+}) => {
   return (
     <div 
-      className="w-[75px] text-center m-[5px] flex flex-col items-center cursor-pointer"
+      className={`flex flex-col items-start ${isMobile ? 'p-1' : 'p-2'} cursor-pointer hover:bg-black/10 rounded`}
       onClick={onClick}
     >
       <Image 
         src={icon} 
         alt={label} 
-        width={32} 
-        height={32} 
-        className="mb-1"
+        width={isMobile ? 32 : 48} 
+        height={isMobile ? 32 : 48} 
+        className="mb-1" 
       />
-      <span 
-        className="text-white text-shadow text-xs max-w-[70px] break-words text-center"
-        style={{ textShadow: '1px 1px 1px black' }}
-      >
+      <div className={`text-left text-white text-shadow-sm ${isMobile ? 'text-xs' : 'text-sm'} max-w-[80px] break-words`}>
         {label}
-      </span>
+      </div>
     </div>
   );
 };

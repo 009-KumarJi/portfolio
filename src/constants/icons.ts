@@ -10,12 +10,16 @@ export const ICONS = {
   GAMES: "/assets/windows-xp-icons/Game Controller.ico",
   MUSIC: "/assets/windows-xp-icons/Music File.ico",
   VIDEO: "/assets/windows-xp-icons/Video File.ico",
-  RESUME: "/assets/windows-xp-icons/File.ico", // New icon for resume
-  WORK_EXP: "/assets/windows-xp-icons/User's Computer.ico", // New icon for work experience
+  RESUME: "/assets/windows-xp-icons/File.ico",
+  WORK_EXP: "/assets/windows-xp-icons/User's Computer.ico",
   PHONE: "/assets/windows-xp-icons/Phone.ico",
   STARTLOGO: "/assets/windows-xp-icons/xplogo.png",
+  // Keep these paths as they are since they're direct from public directory
   MY_PHOTU: "/krishna-kumar.jpg",
   INSTA: "/insta.png",
   WHATSAPP: "/wa.png",
-  MAIL: "/assets/windows-xp-icons/sprb0401.dll_14_2003_1025-3.png"
+  MAIL: "/assets/windows-xp-icons/sprb0401.dll_14_2003_1025-3.png",
+  MY_MOB_PHOTU: "/krishna-kumar-mob.jpg",
+  LINKEDIN: "/ld.png",
+  MY_SQ_PHOTU: "/krishna-kumar-mob-sq.jpg"
 };

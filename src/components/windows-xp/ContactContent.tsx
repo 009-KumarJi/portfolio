@@ -46,6 +46,19 @@ export const ContactContent: React.FC = () => {
       </div>
 
       <div className="mb-4 flex items-center space-x-2">
+        <Image src={ICONS.LINKEDIN} alt="linkedin" width={20} height={20} />
+        <a 
+          href="https://linkedin.com/in/krishna-kumar-975b25186" // replace with your actual Instagram handle
+          target="_blank" 
+          rel="noopener noreferrer" 
+          onClick={()=>{}}
+          className="text-[#0A246A] text-sm underline hover:text-pink-600"
+        >
+          Connect on Linkedin
+        </a>
+      </div>
+
+      <div className="mb-4 flex items-center space-x-2">
         <Image src={ICONS.INSTA} alt="instagram" width={20} height={20} />
         <a 
           href="https://instagram.com/krishhnaa.k" // replace with your actual Instagram handle

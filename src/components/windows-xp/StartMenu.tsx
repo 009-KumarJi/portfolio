@@ -9,9 +9,10 @@ interface StartMenuProps {
   isOpen: boolean;
   onClose: () => void;
   openWindow: (windowId: keyof Omit<WindowsState, 'minimized'>) => void;
+  isMobile?: boolean;
 }
 
-export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindow }) => {
+export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindow, isMobile }) => {
   if (!isOpen) return null;
   
   // Function to handle external navigation without using window directly
@@ -27,10 +28,10 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
     >
       <div className="h-12 bg-gradient-to-b from-[#235AD1] to-[#4591D6] px-2 py-1 flex items-center">
         <div className="bg-[#4579ca] h-10 w-10 flex items-center justify-center rounded-full border-2 border-white">
-          <Image src={ICONS.USER} alt="User" width={32} height={32} className="rounded-full" />
+          <Image src={ICONS.MY_SQ_PHOTU} alt="User" width={32} height={32} className="rounded-full" />
         </div>
-        <div className="text-white font-bold ml-2 text-lg">
-          Portfolio User
+        <div className="text-white font-bold ml-2 text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+          Krishna Kumar
         </div>
       </div>
       
@@ -49,8 +50,8 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           >
             <Image src={ICONS.MY_COMPUTER} alt="About" width={24} height={24} className="mr-2" />
             <div>
-              <div className="font-bold text-sm">About Me</div>
-              <div className="text-xs">View my profile</div>
+              <div className="font-bold text-sm text-[#333333]">About Me</div>
+              <div className="text-xs text-[#555555]">View my profile</div>
             </div>
           </div>
           
@@ -63,8 +64,8 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           >
             <Image src={ICONS.FOLDER} alt="Projects" width={24} height={24} className="mr-2" />
             <div>
-              <div className="font-bold text-sm">My Projects</div>
-              <div className="text-xs">View my work</div>
+              <div className="font-bold text-sm text-[#333333]">My Projects</div>
+              <div className="text-xs text-[#555555]">View my work</div>
             </div>
           </div>
           
@@ -77,8 +78,8 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           >
             <Image src={ICONS.NOTEPAD} alt="Skills" width={24} height={24} className="mr-2" />
             <div>
-              <div className="font-bold text-sm">Skills</div>
-              <div className="text-xs">View my skillset</div>
+              <div className="font-bold text-sm text-[#333333]">Skills</div>
+              <div className="text-xs text-[#555555]">View my skillset</div>
             </div>
           </div>
           
@@ -91,8 +92,8 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           >
             <Image src={ICONS.MSN} alt="Contact" width={24} height={24} className="mr-2" />
             <div>
-              <div className="font-bold text-sm">Contact Me</div>
-              <div className="text-xs">Send me a message</div>
+              <div className="font-bold text-sm text-[#333333]">Contact Me</div>
+              <div className="text-xs text-[#555555]">Send me a message</div>
             </div>
           </div>
           
@@ -105,8 +106,8 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           >
             <Image src={ICONS.RESUME} alt="Resume" width={24} height={24} className="mr-2" />
             <div>
-              <div className="font-bold text-sm">Resume</div>
-              <div className="text-xs">View my professional resume</div>
+              <div className="font-bold text-sm text-[#333333]">Resume</div>
+              <div className="text-xs text-[#555555]">View my professional resume</div>
             </div>
           </div>
           
@@ -119,8 +120,8 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           >
             <Image src={ICONS.WORK_EXP} alt="Work Experience" width={24} height={24} className="mr-2" />
             <div>
-              <div className="font-bold text-sm">Work Experience</div>
-              <div className="text-xs">View my professional journey</div>
+              <div className="font-bold text-sm text-[#333333]">Work Experience</div>
+              <div className="text-xs text-[#555555]">View my professional journey</div>
             </div>
           </div>
           
@@ -129,8 +130,8 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           <div className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer">
             <Image src={ICONS.SYSTEM} alt="Settings" width={24} height={24} className="mr-2" />
             <div>
-              <div className="font-bold text-sm">Settings</div>
-              <div className="text-xs">Configure portfolio</div>
+              <div className="font-bold text-sm text-[#333333]">Settings</div>
+              <div className="text-xs text-[#555555]">Configure portfolio</div>
             </div>
           </div>
           
@@ -138,14 +139,14 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
           
           <div 
             className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
-            onClick={() => handleExternalNavigation('https://github.com')}
+            onClick={() => handleExternalNavigation('https://linkedin.com/in/krishna-kumar-975b25186')}
           >
             <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center mr-2 text-white font-bold text-xs">
               X
             </div>
             <div>
-              <div className="font-bold text-sm">Turn Off Portfolio</div>
-              <div className="text-xs">Exit the experience</div>
+              <div className="font-bold text-sm text-[#333333]">Turn Off Portfolio</div>
+              <div className="text-xs text-[#555555]">Exit the experience</div>
             </div>
           </div>
         </div>

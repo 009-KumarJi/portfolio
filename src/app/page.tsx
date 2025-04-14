@@ -13,39 +13,55 @@ import { ContactContent } from "@/components/windows-xp/ContactContent";
 import { StartMenu } from "@/components/windows-xp/StartMenu";
 import { ResumeContent } from "@/components/windows-xp/ResumeContent";
 import { WorkExperienceContent } from "@/components/windows-xp/WorkExperienceContent";
+import dynamic from 'next/dynamic';
 
-export default function Home() {
+// Use dynamic import with ssr: false to prevent hydration mismatch
+const Portfolio = dynamic(() => Promise.resolve(PortfolioContent), {
+  ssr: false
+});
+
+function PortfolioContent() {
   const [windows, setWindows] = useState<WindowsState>({
     about: false,
     projects: false,
     contact: false,
     skills: false,
     resume: false,
-    workExperience: false,  // Added work experience window state
+    workExperience: false,
     minimized: {
       about: false,
       projects: false,
       contact: false,
       skills: false,
       resume: false,
-      workExperience: false,  // Added work experience minimized state
+      workExperience: false,
     }
   });
 
   const [activeWindow, setActiveWindow] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<string>('');
-  const [isClient, setIsClient] = useState(false);
   const [startMenuOpen, setStartMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Only set isClient to true after component mounts to prevent hydration mismatch
   useEffect(() => {
-    setIsClient(true);
+    // Check if on mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Update time only on the client side to prevent hydration mismatch
+  // Update time
   useEffect(() => {
     const updateTime = () => {
-      setCurrentTime(new Date().toLocaleTimeString());
+      setCurrentTime(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
     };
     
     // Initial update
@@ -69,6 +85,40 @@ export default function Home() {
     window.addEventListener('click', handleClickOutside);
     return () => window.removeEventListener('click', handleClickOutside);
   }, [startMenuOpen]);
+
+  // Helper function to get window positions based on device type
+  const getWindowPosition = (windowId: string) => {
+    // For desktop, use predefined positions
+    const desktopPositions = {
+      about: { x: 50, y: 50 },
+      projects: { x: 80, y: 80 },
+      skills: { x: 110, y: 110 },
+      contact: { x: 140, y: 140 },
+      resume: { x: 90, y: 90 },
+      workExperience: { x: 120, y: 120 }
+    };
+    
+    // Default desktop values
+    const defaultValues = {
+      initialX: desktopPositions[windowId as keyof typeof desktopPositions]?.x || 50,
+      initialY: desktopPositions[windowId as keyof typeof desktopPositions]?.y || 50,
+      initialWidth: windowId === 'resume' || windowId === 'workExperience' ? 620 : 500,
+      initialHeight: windowId === 'resume' || windowId === 'workExperience' ? 500 : 400
+    };
+    
+    // For mobile devices, return modified values
+    if (isMobile) {
+      return {
+        initialX: defaultValues.initialX,
+        initialY: defaultValues.initialY,
+        initialWidth: Math.min(window.innerWidth * 0.95, defaultValues.initialWidth),
+        initialHeight: Math.min(window.innerHeight * 0.7, defaultValues.initialHeight)
+      };
+    }
+    
+    // Otherwise return desktop values
+    return defaultValues;
+  };
 
   const openWindow = (windowId: keyof Omit<WindowsState, 'minimized'>) => {
     setWindows(prev => ({
@@ -151,42 +201,75 @@ export default function Home() {
     setStartMenuOpen(!startMenuOpen);
   };
 
+  // Function to render taskbar buttons
+  const renderTaskbarButton = (
+    windowId: keyof Omit<WindowsState, 'minimized'>,
+    icon: string,
+    label: string
+  ) => {
+    if (!windows[windowId]) return null;
+    
+    return (
+      <button 
+        className={`mx-0.5 flex items-center px-2 py-0.5 ${
+          isMobile ? 'min-w-[40px] md:min-w-[120px]' : 'min-w-[120px]'
+        } ${
+          windows.minimized[windowId]
+            ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
+            : activeWindow === windowId 
+              ? "bg-[#3A6EA5] text-white" 
+              : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
+        } rounded`}
+        onClick={() => windows.minimized[windowId] ? restoreWindow(windowId) : setActiveWindow(windowId)}
+      >
+        <Image src={icon} alt={label} width={16} height={16} className="mr-1" />
+        <span className={`text-xs truncate ${isMobile ? 'hidden md:inline' : ''}`}>{label}</span>
+      </button>
+    );
+  };
+
   return (
     <div 
       className="relative w-screen h-screen overflow-hidden"
-      style={{ backgroundImage: `url(${ICONS.MY_PHOTU})`, backgroundSize: 'cover' }}
+      style={{ backgroundImage: `url(${isMobile ? ICONS.MY_MOB_PHOTU : ICONS.MY_PHOTU})`, backgroundSize: 'cover' }}
     >
       {/* Desktop Icons */}
-      <div className="p-4 grid grid-cols-1 gap-4">
+      <div className={`p-4 ${isMobile ? 'grid grid-cols-3 gap-2 md:grid-cols-1 md:gap-4' : 'grid grid-cols-1 gap-4'}`}>
         <DesktopIcon
           icon={ICONS.MY_COMPUTER}
           label="About Me"
           onClick={() => openWindow("about")}
+          isMobile={isMobile}
         />
         <DesktopIcon
           icon={ICONS.FOLDER}
           label="Projects"
           onClick={() => openWindow("projects")}
+          isMobile={isMobile}
         />
         <DesktopIcon
           icon={ICONS.NOTEPAD}
           label="Skills"
           onClick={() => openWindow("skills")}
+          isMobile={isMobile}
         />
         <DesktopIcon
           icon={ICONS.MSN}
           label="Contact"
           onClick={() => openWindow("contact")}
+          isMobile={isMobile}
         />
         <DesktopIcon
           icon={ICONS.RESUME}
           label="Resume"
           onClick={() => openWindow("resume")}
+          isMobile={isMobile}
         />
         <DesktopIcon
           icon={ICONS.WORK_EXP}
           label="Work Experience"
           onClick={() => openWindow("workExperience")}
+          isMobile={isMobile}
         />
       </div>
 
@@ -196,8 +279,10 @@ export default function Home() {
           title="About Me"
           icon={ICONS.MY_COMPUTER}
           id="about-window"
-          initialX={100}
-          initialY={50}
+          initialX={getWindowPosition('about').initialX}
+          initialY={getWindowPosition('about').initialY}
+          initialWidth={getWindowPosition('about').initialWidth}
+          initialHeight={getWindowPosition('about').initialHeight}
           isActive={activeWindow === "about"}
           isMinimized={windows.minimized.about}
           content={<AboutContent />}
@@ -205,6 +290,7 @@ export default function Home() {
           onMaximize={() => maximizeWindow("about")}
           onClose={() => closeWindow("about")}
           onActivate={() => setActiveWindow("about")}
+          isMobile={isMobile}
         />
       )}
       
@@ -213,8 +299,10 @@ export default function Home() {
           title="Projects"
           icon={ICONS.FOLDER}
           id="projects-window"
-          initialX={150}
-          initialY={100}
+          initialX={getWindowPosition('projects').initialX}
+          initialY={getWindowPosition('projects').initialY}
+          initialWidth={getWindowPosition('projects').initialWidth}
+          initialHeight={getWindowPosition('projects').initialHeight}
           isActive={activeWindow === "projects"}
           isMinimized={windows.minimized.projects}
           content={<ProjectsContent />}
@@ -222,6 +310,7 @@ export default function Home() {
           onMaximize={() => maximizeWindow("projects")}
           onClose={() => closeWindow("projects")}
           onActivate={() => setActiveWindow("projects")}
+          isMobile={isMobile}
         />
       )}
       
@@ -230,8 +319,10 @@ export default function Home() {
           title="Skills"
           icon={ICONS.NOTEPAD}
           id="skills-window"
-          initialX={200}
-          initialY={150}
+          initialX={getWindowPosition('skills').initialX}
+          initialY={getWindowPosition('skills').initialY}
+          initialWidth={getWindowPosition('skills').initialWidth}
+          initialHeight={getWindowPosition('skills').initialHeight}
           isActive={activeWindow === "skills"}
           isMinimized={windows.minimized.skills}
           content={<SkillsContent />}
@@ -239,6 +330,7 @@ export default function Home() {
           onMaximize={() => maximizeWindow("skills")}
           onClose={() => closeWindow("skills")}
           onActivate={() => setActiveWindow("skills")}
+          isMobile={isMobile}
         />
       )}
       
@@ -247,8 +339,10 @@ export default function Home() {
           title="Contact Me"
           icon={ICONS.MSN}
           id="contact-window"
-          initialX={250}
-          initialY={200}
+          initialX={getWindowPosition('contact').initialX}
+          initialY={getWindowPosition('contact').initialY}
+          initialWidth={getWindowPosition('contact').initialWidth}
+          initialHeight={getWindowPosition('contact').initialHeight}
           isActive={activeWindow === "contact"}
           isMinimized={windows.minimized.contact}
           content={<ContactContent />}
@@ -256,6 +350,7 @@ export default function Home() {
           onMaximize={() => maximizeWindow("contact")}
           onClose={() => closeWindow("contact")}
           onActivate={() => setActiveWindow("contact")}
+          isMobile={isMobile}
         />
       )}
       
@@ -264,10 +359,10 @@ export default function Home() {
           title="Resume"
           icon={ICONS.RESUME}
           id="resume-window"
-          initialX={300}
-          initialY={150}
-          initialWidth={620}
-          initialHeight={550}
+          initialX={getWindowPosition('resume').initialX}
+          initialY={getWindowPosition('resume').initialY}
+          initialWidth={getWindowPosition('resume').initialWidth}
+          initialHeight={getWindowPosition('resume').initialHeight}
           isActive={activeWindow === "resume"}
           isMinimized={windows.minimized.resume}
           content={<ResumeContent />}
@@ -275,6 +370,7 @@ export default function Home() {
           onMaximize={() => maximizeWindow("resume")}
           onClose={() => closeWindow("resume")}
           onActivate={() => setActiveWindow("resume")}
+          isMobile={isMobile}
         />
       )}
 
@@ -283,10 +379,10 @@ export default function Home() {
           title="Work Experience"
           icon={ICONS.WORK_EXP}
           id="workExperience-window"
-          initialX={350}
-          initialY={200}
-          initialWidth={620}
-          initialHeight={550}
+          initialX={getWindowPosition('workExperience').initialX}
+          initialY={getWindowPosition('workExperience').initialY}
+          initialWidth={getWindowPosition('workExperience').initialWidth}
+          initialHeight={getWindowPosition('workExperience').initialHeight}
           isActive={activeWindow === "workExperience"}
           isMinimized={windows.minimized.workExperience}
           content={<WorkExperienceContent />}
@@ -294,6 +390,7 @@ export default function Home() {
           onMaximize={() => maximizeWindow("workExperience")}
           onClose={() => closeWindow("workExperience")}
           onActivate={() => setActiveWindow("workExperience")}
+          isMobile={isMobile}
         />
       )}
 
@@ -302,6 +399,7 @@ export default function Home() {
         isOpen={startMenuOpen} 
         onClose={() => setStartMenuOpen(false)} 
         openWindow={openWindow}
+        isMobile={isMobile}
       />
 
       {/* Windows XP Taskbar */}
@@ -311,111 +409,27 @@ export default function Home() {
           onClick={toggleStartMenu}
         >
           <Image src={ICONS.STARTLOGO} alt="Start" width={20} height={20} className="mr-1 inline-block align-middle" />
-          <span className="text-sm">Start</span>
+          <span className={`text-sm ${isMobile ? 'hidden md:inline' : ''}`}>Start</span>
         </button>
         
-        <div className="flex flex-1 mx-2">
-          {windows.about && (
-            <button 
-              className={`mx-0.5 flex items-center px-2 py-0.5 min-w-[120px] ${
-                windows.minimized.about
-                  ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-                  : activeWindow === "about" 
-                    ? "bg-[#3A6EA5] text-white" 
-                    : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-              } rounded`}
-              onClick={() => windows.minimized.about ? restoreWindow("about") : setActiveWindow("about")}
-            >
-              <Image src={ICONS.MY_COMPUTER} alt="About" width={16} height={16} className="mr-1" />
-              <span className="text-xs">About Me</span>
-            </button>
-          )}
-          
-          {windows.projects && (
-            <button 
-              className={`mx-0.5 flex items-center px-2 py-0.5 min-w-[120px] ${
-                windows.minimized.projects
-                  ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-                  : activeWindow === "projects" 
-                    ? "bg-[#3A6EA5] text-white" 
-                    : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-              } rounded`}
-              onClick={() => windows.minimized.projects ? restoreWindow("projects") : setActiveWindow("projects")}
-            >
-              <Image src={ICONS.FOLDER} alt="Projects" width={16} height={16} className="mr-1" />
-              <span className="text-xs">Projects</span>
-            </button>
-          )}
-          
-          {windows.skills && (
-            <button 
-              className={`mx-0.5 flex items-center px-2 py-0.5 min-w-[120px] ${
-                windows.minimized.skills
-                  ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-                  : activeWindow === "skills" 
-                    ? "bg-[#3A6EA5] text-white" 
-                    : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-              } rounded`}
-              onClick={() => windows.minimized.skills ? restoreWindow("skills") : setActiveWindow("skills")}
-            >
-              <Image src={ICONS.NOTEPAD} alt="Skills" width={16} height={16} className="mr-1" />
-              <span className="text-xs">Skills</span>
-            </button>
-          )}
-          
-          {windows.contact && (
-            <button 
-              className={`mx-0.5 flex items-center px-2 py-0.5 min-w-[120px] ${
-                windows.minimized.contact
-                  ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-                  : activeWindow === "contact" 
-                    ? "bg-[#3A6EA5] text-white" 
-                    : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-              } rounded`}
-              onClick={() => windows.minimized.contact ? restoreWindow("contact") : setActiveWindow("contact")}
-            >
-              <Image src={ICONS.MSN} alt="Contact" width={16} height={16} className="mr-1" />
-              <span className="text-xs">Contact</span>
-            </button>
-          )}
-          
-          {windows.resume && (
-            <button 
-              className={`mx-0.5 flex items-center px-2 py-0.5 min-w-[120px] ${
-                windows.minimized.resume
-                  ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-                  : activeWindow === "resume" 
-                    ? "bg-[#3A6EA5] text-white" 
-                    : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-              } rounded`}
-              onClick={() => windows.minimized.resume ? restoreWindow("resume") : setActiveWindow("resume")}
-            >
-              <Image src={ICONS.RESUME} alt="Resume" width={16} height={16} className="mr-1" />
-              <span className="text-xs">Resume</span>
-            </button>
-          )}
-
-          {windows.workExperience && (
-            <button 
-              className={`mx-0.5 flex items-center px-2 py-0.5 min-w-[120px] ${
-                windows.minimized.workExperience
-                  ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-                  : activeWindow === "workExperience" 
-                    ? "bg-[#3A6EA5] text-white" 
-                    : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
-              } rounded`}
-              onClick={() => windows.minimized.workExperience ? restoreWindow("workExperience") : setActiveWindow("workExperience")}
-            >
-              <Image src={ICONS.WORK_EXP} alt="Work Experience" width={16} height={16} className="mr-1" />
-              <span className="text-xs">Work Experience</span>
-            </button>
-          )}
+        <div className="flex flex-1 mx-2 overflow-x-auto scrollbar-hide">
+          {renderTaskbarButton("about", ICONS.MY_COMPUTER, "About Me")}
+          {renderTaskbarButton("projects", ICONS.FOLDER, "Projects")}
+          {renderTaskbarButton("skills", ICONS.NOTEPAD, "Skills")}
+          {renderTaskbarButton("contact", ICONS.MSN, "Contact")}
+          {renderTaskbarButton("resume", ICONS.RESUME, "Resume")}
+          {renderTaskbarButton("workExperience", ICONS.WORK_EXP, "Work Experience")}
         </div>
         
-        <div className="min-w-[80px] text-center text-white text-xs bg-[#0F5DD5]">
-          {isClient && currentTime}
+        <div className={`${isMobile ? 'min-w-[40px] md:min-w-[80px]' : 'min-w-[80px]'} text-center text-white text-xs bg-[#0F5DD5]`}>
+          {currentTime}
         </div>
       </div>
     </div>
   );
+}
+
+// Simple export for the main page
+export default function Home() {
+  return <Portfolio />;
 }
