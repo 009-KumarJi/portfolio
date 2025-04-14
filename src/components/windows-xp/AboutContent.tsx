@@ -8,8 +8,8 @@ export const AboutContent: React.FC = () => {
       <h2 className="font-bold text-[#0A246A] mb-4">About Me</h2>
       <hr className="mb-4 border-[#D9D4C8]" />
       <p className="mb-4 text-sm">
-        Hello! I'm Krishna Kumar, a passionate software developer and engineering student from IET DAVV, Indore.
-        I'm currently pursuing my Bachelor of Engineering degree with a focus on software development and web technologies.
+        Hello! I&apos;m Krishna Kumar, a passionate software developer and engineering student from IET DAVV, Indore.
+        I&apos;m currently pursuing my Bachelor of Engineering degree with a focus on software development and web technologies.
       </p>
       <p className="mb-4 text-sm">
         I specialize in full-stack development with expertise in both front-end and back-end technologies.
@@ -17,13 +17,13 @@ export const AboutContent: React.FC = () => {
         frameworks and tools.
       </p>
       <p className="mb-4 text-sm">
-        Besides coding, I'm actively involved in extracurricular activities including coordinating events like 
+        Besides coding, I&apos;m actively involved in extracurricular activities including coordinating events like 
         TEDxDAVV, technical fests, and sports carnivals. I also contribute to the Engineers Without Borders India chapter
         at my university.
       </p>
       <p className="text-sm">
-        I'm passionate about building scalable and user-friendly applications that solve real-world problems.
-        I'm currently looking for opportunities to apply my skills in challenging environments where I can continue to grow.
+        I&apos;m passionate about building scalable and user-friendly applications that solve real-world problems.
+        I&apos;m currently looking for opportunities to apply my skills in challenging environments where I can continue to grow.
       </p>
       <div className="flex justify-end mt-6">
       <a href="/krishna_kumar_sde1.pdf" download>

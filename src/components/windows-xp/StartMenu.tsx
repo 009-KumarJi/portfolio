@@ -8,7 +8,7 @@ import { WindowsState } from '@/types';
 interface StartMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  openWindow: (windowId: keyof WindowsState) => void;
+  openWindow: (windowId: keyof Omit<WindowsState, 'minimized'>) => void;
 }
 
 export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindow }) => {
@@ -107,6 +107,20 @@ export const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, openWindo
             <div>
               <div className="font-bold text-sm">Resume</div>
               <div className="text-xs">View my professional resume</div>
+            </div>
+          </div>
+          
+          <div 
+            className="menu-item flex items-center p-1 hover:bg-[#316AC5] hover:text-white cursor-pointer"
+            onClick={() => {
+              openWindow("workExperience");
+              onClose();
+            }}
+          >
+            <Image src={ICONS.WORK_EXP} alt="Work Experience" width={24} height={24} className="mr-2" />
+            <div>
+              <div className="font-bold text-sm">Work Experience</div>
+              <div className="text-xs">View my professional journey</div>
             </div>
           </div>
           

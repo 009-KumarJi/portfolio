@@ -29,13 +29,13 @@ export interface WindowsState {
   contact: boolean;
   skills: boolean;
   resume: boolean;
-  workExp: boolean;  // Adding work experience window
+  workExperience: boolean;  // Updated to match our implementation
   minimized: {
     about: boolean;
     projects: boolean;
     contact: boolean;
     skills: boolean;
     resume: boolean;
-    workExp: boolean;  // Adding work experience to minimized state
+    workExperience: boolean;  // Updated to match our implementation
   };
 }

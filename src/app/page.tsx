@@ -20,19 +20,27 @@ export default function Home() {
     projects: false,
     contact: false,
     skills: false,
-    resume: false,  // Added resume window state
+    resume: false,
+    workExperience: false,  // Added work experience window state
     minimized: {
       about: false,
       projects: false,
       contact: false,
       skills: false,
-      resume: false,  // Added resume minimized state
+      resume: false,
+      workExperience: false,  // Added work experience minimized state
     }
   });
 
   const [activeWindow, setActiveWindow] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<string>('');
+  const [isClient, setIsClient] = useState(false);
   const [startMenuOpen, setStartMenuOpen] = useState(false);
+
+  // Only set isClient to true after component mounts to prevent hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Update time only on the client side to prevent hydration mismatch
   useEffect(() => {
@@ -175,6 +183,11 @@ export default function Home() {
           label="Resume"
           onClick={() => openWindow("resume")}
         />
+        <DesktopIcon
+          icon={ICONS.WORK_EXP}
+          label="Work Experience"
+          onClick={() => openWindow("workExperience")}
+        />
       </div>
 
       {/* Windows */}
@@ -262,6 +275,25 @@ export default function Home() {
           onMaximize={() => maximizeWindow("resume")}
           onClose={() => closeWindow("resume")}
           onActivate={() => setActiveWindow("resume")}
+        />
+      )}
+
+      {windows.workExperience && (
+        <WindowsXPWindow
+          title="Work Experience"
+          icon={ICONS.WORK_EXP}
+          id="workExperience-window"
+          initialX={350}
+          initialY={200}
+          initialWidth={620}
+          initialHeight={550}
+          isActive={activeWindow === "workExperience"}
+          isMinimized={windows.minimized.workExperience}
+          content={<WorkExperienceContent />}
+          onMinimize={() => minimizeWindow("workExperience")}
+          onMaximize={() => maximizeWindow("workExperience")}
+          onClose={() => closeWindow("workExperience")}
+          onActivate={() => setActiveWindow("workExperience")}
         />
       )}
 
@@ -362,10 +394,26 @@ export default function Home() {
               <span className="text-xs">Resume</span>
             </button>
           )}
+
+          {windows.workExperience && (
+            <button 
+              className={`mx-0.5 flex items-center px-2 py-0.5 min-w-[120px] ${
+                windows.minimized.workExperience
+                  ? "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
+                  : activeWindow === "workExperience" 
+                    ? "bg-[#3A6EA5] text-white" 
+                    : "bg-[#D9D4C8] text-black hover:bg-[#E3E1D3]"
+              } rounded`}
+              onClick={() => windows.minimized.workExperience ? restoreWindow("workExperience") : setActiveWindow("workExperience")}
+            >
+              <Image src={ICONS.WORK_EXP} alt="Work Experience" width={16} height={16} className="mr-1" />
+              <span className="text-xs">Work Experience</span>
+            </button>
+          )}
         </div>
         
         <div className="min-w-[80px] text-center text-white text-xs bg-[#0F5DD5]">
-          {currentTime}
+          {isClient && currentTime}
         </div>
       </div>
     </div>
