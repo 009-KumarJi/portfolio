@@ -9,11 +9,11 @@ export const AboutContent: React.FC = () => {
       <hr className="mb-4 border-[#D9D4C8]" />
       <p className="mb-4 text-sm">
         Hello! I&apos;m Krishna Kumar, a passionate software developer and engineering student from IET DAVV, Indore.
-        I&apos;m currently pursuing my Bachelor of Engineering degree with a focus on software development and web technologies.
+        I&apos;m currently pursuing my Bachelor of Engineering degree.
       </p>
       <p className="mb-4 text-sm">
         I specialize in full-stack development with expertise in both front-end and back-end technologies.
-        My technical journey includes working with React, Node.js, Express, MongoDB, and various other modern
+        My technical journey includes working with Springboot, Node.js, Express, React, and various other modern
         frameworks and tools.
       </p>
       <p className="mb-4 text-sm">

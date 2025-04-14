@@ -75,14 +75,15 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
       });
       
       // For mobile, set initial position to center
-      if (!isMobileDragging) {
+      // Only set position on initial render, not after dragging
+      if (!isMobileDragging && position.x === initialX && position.y === initialY) {
         setPosition({
           x: Math.max(0, (window.innerWidth - initialWidth) / 2),
           y: Math.max(0, window.innerHeight * 0.1)
         });
       }
     }
-  }, [isMobile, initialWidth, initialHeight, isMobileDragging]);
+  }, [isMobile, initialWidth, initialHeight, initialX, initialY, position.x, position.y]);
 
   // Handle touch events for mobile dragging
   useEffect(() => {
@@ -104,10 +105,8 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
       const deltaX = touch.clientX - touchStartPos.current.x;
       const deltaY = touch.clientY - touchStartPos.current.y;
       
-      touchStartPos.current = { x: touch.clientX, y: touch.clientY };
-      
       setPosition(prev => {
-        // Calculate new position
+        // Calculate new position with the delta from the current touch position
         const newX = prev.x + deltaX;
         const newY = prev.y + deltaY;
         
@@ -121,11 +120,15 @@ export const WindowsXPWindow: React.FC<WindowProps & { isMobile?: boolean }> = (
         };
       });
       
+      // Update the touch start position for the next move event
+      touchStartPos.current = { x: touch.clientX, y: touch.clientY };
+      
       // Prevent page scrolling while dragging
       e.preventDefault();
     };
 
     const handleTouchEnd = () => {
+      // Important: Don't reset position on touch end
       setIsMobileDragging(false);
       touchStartPos.current = null;
     };
