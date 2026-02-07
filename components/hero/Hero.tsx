@@ -37,8 +37,9 @@ export default function Hero() {
           <a href="#projects">
             <Button>View Projects</Button>
           </a>
-          <Button variant="outline">Download Resume</Button>
-        </div>
+         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+  <Button variant="outline">Download Resume</Button>
+</a>
       </motion.div>
 
       {/* DESKTOP IMAGE */}
