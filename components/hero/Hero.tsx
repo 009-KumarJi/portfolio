@@ -7,7 +7,7 @@ import ProfileTerminal from "./ProfileTerminal";
 
 export default function Hero() {
   return (
-    <Section className="min-h-screen flex flex-col justify-center items-center md:items-center md:flex-row md:justify-between gap-10 text-center md:text-left">
+    <Section className="min-h-screen flex flex-col justify-center items-center md:flex-row md:justify-between gap-10 text-center md:text-left">
       
       {/* MOBILE IMAGE */}
       <div className="md:hidden flex justify-center w-full">
@@ -33,13 +33,25 @@ export default function Hero() {
           secure APIs, and cloud-native systems.
         </p>
 
+        {/* BUTTONS */}
         <div className="mt-6 flex gap-3 justify-center md:justify-start flex-wrap">
+          
+          {/* Scroll to projects */}
           <a href="#projects">
             <Button>View Projects</Button>
           </a>
-         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-  <Button variant="outline">Download Resume</Button>
-</a>
+
+          {/* Resume download */}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 border border-gray-600 rounded-lg hover:border-gray-400 transition"
+          >
+            Download Resume
+          </a>
+
+        </div>
       </motion.div>
 
       {/* DESKTOP IMAGE */}
