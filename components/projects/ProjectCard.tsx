@@ -42,8 +42,8 @@ export default function ProjectCard({
       }`}
     >
       {/* Header */}
-      <div className="flex items-start justify-between mb-1 gap-4">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2 gap-3 sm:gap-4">
+        <div className="flex items-center gap-3 flex-wrap">
           {featured && (
             <span className="text-xs px-2 py-0.5 bg-[var(--accent-muted)] text-[var(--accent)] rounded-full font-medium">
               Featured
