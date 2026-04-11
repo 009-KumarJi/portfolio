@@ -90,7 +90,7 @@ function ExperienceItem({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="border-l-2 border-gray-800 pl-6 pb-10 relative group"
+      className="border-l-2 border-gray-800 pl-4 sm:pl-6 pb-10 relative group"
     >
       {/* Timeline dot */}
       <div className="absolute w-3 h-3 bg-[var(--accent)] rounded-full -left-[7px] top-1.5 group-hover:scale-125 transition-transform ring-4 ring-[var(--bg)]" />

@@ -29,7 +29,7 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo / Name */}
           <a href="#" className="flex items-center gap-2 group">
             <span className="text-lg font-bold tracking-tight">
@@ -102,7 +102,7 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="fixed top-16 left-0 right-0 z-40 bg-[#0b0d10]/95 backdrop-blur-xl border-b border-gray-800 md:hidden"
           >
-            <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col gap-4">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}

@@ -8,7 +8,7 @@ export default function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`max-w-6xl mx-auto px-6 ${className}`}>
+    <section id={id} className={`max-w-6xl mx-auto px-4 sm:px-6 ${className}`}>
       {children}
     </section>
   );

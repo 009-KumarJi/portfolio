@@ -78,9 +78,9 @@ export default function Hero() {
         </div>
 
         {/* BUTTONS */}
-        <div className="mt-6 flex gap-3 justify-center md:justify-start flex-wrap">
+        <div className="mt-6 flex gap-3 justify-center md:justify-start flex-wrap w-full">
           <a href="#projects">
-            <button className="px-6 py-3 bg-[var(--accent)] text-black font-medium rounded-lg hover:opacity-90 transition">
+            <button className="px-4 sm:px-6 py-3 bg-[var(--accent)] text-black font-medium rounded-lg hover:opacity-90 transition">
               View Projects
             </button>
           </a>
@@ -89,7 +89,7 @@ export default function Hero() {
             href="/krishna_kumar.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 border border-gray-600 rounded-lg hover:border-gray-400 transition flex items-center gap-2"
+            className="px-4 sm:px-6 py-3 border border-gray-600 rounded-lg hover:border-gray-400 transition flex items-center gap-2"
           >
             View Resume
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
