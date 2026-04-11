@@ -30,6 +30,23 @@ export const skills = {
     "Apache Kafka",
   ],
 
+  frontend: [
+    "React.js",
+    "Next.js",
+    "HTML",
+    "CSS",
+    "Material UI",
+    "Redux Toolkit",
+  ],
+
+  tools: [
+    "Git",
+    "Docker",
+    "Postman",
+    "Linux",
+    "CI/CD",
+  ],
+
   concepts: [
     "Microservices Architecture",
     "Event-Driven Systems",

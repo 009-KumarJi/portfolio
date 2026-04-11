@@ -9,10 +9,10 @@ export default function ProfileTerminal() {
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-[#0d0f14] border border-gray-800 rounded-xl shadow-lg overflow-hidden w-[220px] sm:w-[260px] md:w-[340px]"
+      className="bg-[var(--bg-card)] border border-gray-800 rounded-xl shadow-lg shadow-black/30 overflow-hidden w-[220px] sm:w-[260px] md:w-[340px]"
     >
       {/* Terminal header */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-[#111318] border-b border-gray-800">
+      <div className="flex items-center gap-2 px-4 py-2 bg-[var(--bg-card-alt)] border-b border-gray-800">
         <motion.span
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ repeat: Infinity, duration: 2 }}
@@ -41,14 +41,15 @@ export default function ProfileTerminal() {
           alt="Krishna Kumar"
           width={280}
           height={280}
-          className="rounded-lg grayscale hover:grayscale-0 transition"
+          className="rounded-lg grayscale hover:grayscale-0 transition duration-500"
         />
       </div>
 
       {/* Terminal footer */}
-      <div className="px-4 pb-4 font-mono text-xs text-green-400">
-        <p>&gt; identity: software_engineer</p>
-        <p>&gt; status: available_for_building</p>
+      <div className="px-4 pb-4 font-mono text-xs space-y-1">
+        <p className="text-[var(--green)]">&gt; identity: software_engineer</p>
+        <p className="text-[var(--green)]">&gt; location: bengaluru_india</p>
+        <p className="text-[var(--accent)]">&gt; status: open_to_opportunities</p>
       </div>
     </motion.div>
   );

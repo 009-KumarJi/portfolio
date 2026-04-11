@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Krishna Kumar — Portfolio
 
-## Getting Started
+> **[krishna.novitrail.com](https://krishna.novitrail.com/)**
 
-First, run the development server:
+Personal portfolio site built with Next.js 16, React 19, Tailwind CSS v4, and Framer Motion. Dark-themed, responsive, and designed to showcase my work as a software engineer.
+
+---
+
+## ✨ Sections
+
+| Section | Description |
+|---|---|
+| **Hero** | Intro with animated terminal-style profile card and CTA buttons |
+| **System Stats** | At-a-glance metrics (experience, cloud, auth stack) |
+| **Experience** | Timeline of roles at Accenture, Envint Global, and WeFrameTech |
+| **Projects** | Featured projects with live/GitHub links and tech stack badges |
+| **Skills** | Categorized skill matrix (Languages, Backend, Databases, Cloud, Concepts) |
+| **Certifications** | Oracle Cloud professional certifications with badge links |
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **UI:** React 19, Framer Motion
+- **Styling:** Tailwind CSS v4
+- **Language:** TypeScript
+- **Deployment:** Vercel
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+portfolio/
+├── app/
+│   ├── layout.tsx          # Root layout + SEO metadata
+│   ├── page.tsx            # Main page assembling all sections
+│   └── globals.css         # CSS variables + Tailwind import
+├── components/
+│   ├── hero/               # Hero + ProfileTerminal
+│   ├── experience/         # ExperienceTimeline
+│   ├── projects/           # ProjectsSection + ProjectCard
+│   ├── skills/             # SkillsMatrix
+│   ├── certifications/     # Certifications
+│   ├── system/             # SystemStats
+│   └── ui/                 # Button, Section, Footer
+├── data/
+│   ├── certifications.ts   # Cert titles + badge links
+│   ├── projects.ts         # Project descriptions, stacks, links
+│   └── skills.ts           # Categorized skill arrays
+└── public/
+    ├── krishna_kumar.pdf   # Resume PDF
+    └── profile.png         # Profile photo
+```
 
-## Learn More
+## 📄 Resume
 
-To learn more about Next.js, take a look at the following resources:
+The resume PDF is served from `public/krishna_kumar.pdf`. The "View Resume" button in the Hero section opens it in a new tab for preview.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔗 Links
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Portfolio:** [krishna.novitrail.com](https://krishna.novitrail.com/)
+- **GitHub:** [github.com/009-KumarJi](https://github.com/009-KumarJi)
+- **LinkedIn:** [in/krishna-kumar-975b25186](https://www.linkedin.com/in/krishna-kumar-975b25186/)
+- **Email:** krishna902kumar@gmail.com
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ☕ and Next.js.
