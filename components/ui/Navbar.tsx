@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled
             ? "bg-[#0b0d10]/80 backdrop-blur-xl border-b border-gray-800/50 shadow-lg shadow-black/20"
             : "bg-transparent"
@@ -100,7 +100,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-[#0b0d10]/95 backdrop-blur-xl border-b border-gray-800 md:hidden"
+            className="fixed top-16 left-0 w-full z-40 bg-[#0b0d10]/95 backdrop-blur-xl border-b border-gray-800 md:hidden"
           >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
