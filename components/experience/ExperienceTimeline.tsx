@@ -4,11 +4,13 @@ function ExperienceItem({
   role,
   company,
   period,
+  location,
   points,
 }: {
   role: string;
   company: string;
   period: string;
+  location: string;
   points: string[];
 }) {
   return (
@@ -17,7 +19,7 @@ function ExperienceItem({
 
       <h3 className="text-xl font-semibold">{role}</h3>
       <p className="text-gray-400">
-        {company} • {period}
+        {company} • {location} • {period}
       </p>
 
       <ul className="mt-3 space-y-2 text-gray-300">
@@ -38,10 +40,10 @@ export default function ExperienceTimeline() {
         role="Associate Software Engineer"
         company="Accenture"
         period="Oct 2025 – Present"
+        location="Bengaluru, India"
         points={[
-          "Backend development using Python, AWS",
-          "API development and production system optimization",
-          "Data processing workflows in enterprise applications",
+          "Engineered core end-to-end features for enterprise-grade applications utilizing Python and AWS serverless architectures.",
+          "Architected high-performance REST APIs across AWS Lambda and ECS Fargate, successfully decreasing average response times by 21x.",
         ]}
       />
 
@@ -49,10 +51,10 @@ export default function ExperienceTimeline() {
         role="Software Engineering Intern"
         company="Accenture"
         period="Feb 2025 – Jun 2025"
+        location="Bengaluru, India"
         points={[
-          "Developed Python backend utilities for workflow automation",
-          "Applied data-driven optimization and predictive analysis",
-          "Integrated analysis outputs into backend workflows",
+          "Engineered Python-based backend utilities that automated simulation data processing workflows, streamlining performance analysis.",
+          "Analyzed large-scale simulation outputs using data-driven optimization, directly improving system-level decision workflows and operational efficiency.",
         ]}
       />
 
@@ -60,9 +62,10 @@ export default function ExperienceTimeline() {
         role="Full Stack Developer Intern"
         company="Envint Global"
         period="Aug 2024 – Dec 2024"
+        location="Remote"
         points={[
-          "Designed scalable backend foundation from scratch",
-          "Implemented JWT authentication and RBAC",
+          "Architected and built a scalable backend server foundation from scratch, designed to decouple services and easily support future operational expansion.",
+          "Implemented secure JWT-based authentication and Role-Based Access Control (RBAC), fortifying API endpoints and ensuring strict authorization boundaries.",
         ]}
       />
 
@@ -70,8 +73,9 @@ export default function ExperienceTimeline() {
         role="JAMstack Developer Intern"
         company="WeFrameTech"
         period="Jun 2024 – Jul 2024"
+        location="Remote"
         points={[
-          "Integrated Directus and MedusaJS with backend APIs",
+          "Integrated headless CMS platforms (Directus, MedusaJS) with custom Node.js backend APIs to deliver dynamic, high-performance content delivery systems.",
         ]}
       />
     </Section>

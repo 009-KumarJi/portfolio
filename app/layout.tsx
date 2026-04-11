@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Krishna Kumar | Backend Engineer",
+  title: "Krishna Kumar | Software Engineer",
   description:
-    "Backend engineer building scalable APIs, RBAC systems, and cloud-native applications.",
+    "Software engineer building scalable APIs, full-stack applications, and cloud-native systems.",
 };
 
 export default function RootLayout({

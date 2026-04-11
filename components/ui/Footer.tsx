@@ -7,7 +7,7 @@ export default function Footer() {
         <div>
           <p className="font-semibold">Krishna Kumar</p>
           <p className="text-gray-400 text-sm">
-            Backend Engineer • API Systems • Cloud
+            Software Engineer • Full Stack • Cloud • Bengaluru, India
           </p>
         </div>
 
@@ -22,14 +22,16 @@ export default function Footer() {
           <a
             href="https://github.com/009-KumarJi"
             target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-white"
           >
             GitHub
           </a>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/krishna-kumar-975b25186/"
             target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-white"
           >
             LinkedIn

@@ -22,15 +22,15 @@ export default function Hero() {
         className="max-w-md md:max-w-xl flex flex-col items-center md:items-start"
       >
         <h1 className="text-3xl md:text-5xl font-bold leading-snug">
-          I build scalable backend systems
+          I build scalable systems
           <span className="text-[var(--accent)]">
             {" "}that survive production.
           </span>
         </h1>
 
         <p className="mt-4 text-gray-400">
-          Associate Software Engineer focused on backend architecture,
-          secure APIs, and cloud-native systems.
+          Software Engineer with a backend-heavy full-stack profile —
+          APIs, cloud-native architectures, and production-grade frontends.
         </p>
 
         {/* BUTTONS */}
@@ -41,14 +41,14 @@ export default function Hero() {
             <Button>View Projects</Button>
           </a>
 
-          {/* Resume download */}
+          {/* Resume view + download */}
           <a
-            href="/resume.pdf"
+            href="/krishna_kumar.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 border border-gray-600 rounded-lg hover:border-gray-400 transition"
           >
-            Download Resume
+            View Resume
           </a>
 
         </div>

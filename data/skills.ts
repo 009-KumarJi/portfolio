@@ -1,23 +1,40 @@
 export const skills = {
-  languages: ["Java", "Python", "JavaScript", "C++", "HTML", "CSS"],
+  languages: ["Python", "Java", "JavaScript", "TypeScript", "Golang", "C++"],
 
   backend: [
     "FastAPI",
-    "Spring Boot",
     "Node.js",
-    "Express",
+    "Express.js",
+    "Spring Boot",
     "REST APIs",
-    "JWT",
-    "RBAC",
+    "GraphQL",
   ],
 
   databases: [
     "PostgreSQL",
-    "MySQL",
     "MongoDB",
+    "MySQL",
     "Redis",
-    "DynamoDB",
+    "AWS DynamoDB",
   ],
 
-  cloud: ["AWS", "Docker", "Terraform", "Lambda", "ECS"],
+  cloud: [
+    "AWS",
+    "Azure",
+    "Lambda",
+    "SQS",
+    "Step Functions",
+    "ECS Fargate",
+    "Docker",
+    "Terraform",
+    "Apache Kafka",
+  ],
+
+  concepts: [
+    "Microservices Architecture",
+    "Event-Driven Systems",
+    "JWT / OAuth2 / SAML",
+    "RBAC",
+    "Distributed Systems",
+  ],
 };

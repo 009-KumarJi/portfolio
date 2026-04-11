@@ -31,11 +31,12 @@ export default function SkillsMatrix() {
     <Section className="pb-24">
       <h2 className="text-3xl font-semibold mb-10">Skills</h2>
 
-      <div className="grid md:grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
         <SkillGroup title="Languages" items={skills.languages} />
         <SkillGroup title="Backend & APIs" items={skills.backend} />
-        <SkillGroup title="Databases" items={skills.databases} />
+        <SkillGroup title="Databases & Caching" items={skills.databases} />
         <SkillGroup title="Cloud & DevOps" items={skills.cloud} />
+        <SkillGroup title="Concepts" items={skills.concepts} />
       </div>
     </Section>
   );

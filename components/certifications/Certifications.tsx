@@ -8,12 +8,18 @@ export default function Certifications() {
 
       <div className="grid md:grid-cols-2 gap-6">
         {certifications.map((cert, i) => (
-          <div
+          <a
             key={i}
-            className="bg-[#111318] border border-gray-800 rounded-xl p-5"
+            href={cert.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#111318] border border-gray-800 rounded-xl p-5 hover:border-[var(--accent)] transition group"
           >
-            {cert}
-          </div>
+            <div className="flex items-center gap-3">
+              <span className="text-[var(--accent)] text-xl group-hover:scale-110 transition-transform">✦</span>
+              <span>{cert.title}</span>
+            </div>
+          </a>
         ))}
       </div>
     </Section>

@@ -1,29 +1,43 @@
 export const projects = [
   {
-    title: "Smart Media Uploader",
+    title: "NoviConnect",
     description:
-      "Scalable media upload system with multipart uploads, async processing, and role-based access control.",
+      "Engineered a real-time chat platform featuring E2EE-aware messaging and active presence tracking via WebSockets. Designed cross-origin cookie authentication, Google OAuth integration, and secure REST APIs for OTP workflows and media attachment processing.",
     stack: [
-      "FastAPI",
-      "AWS S3",
-      "ECS Fargate",
-      "Terraform",
-      "Lambda",
-      "Step Functions",
-      "JWT",
-      "Docker",
+      "TypeScript",
+      "React 19",
+      "Node.js",
+      "Express 5",
+      "MongoDB",
+      "Redis",
+      "Socket.IO",
+      "Redux Toolkit",
+      "Material UI",
     ],
+    github: "https://github.com/009-KumarJi/NoviConnect",
+    live: "https://noviconnect-client-v2.vercel.app/",
   },
   {
-    title: "NoviConnect Chat App",
+    title: "Smart Media Uploader",
     description:
-      "Real-time chat application with group messaging, presence indicators, and JWT authentication.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "Socket.IO"],
+      "Architected an event-driven media processing platform utilizing direct-to-S3 presigned uploads and stateless ECS Fargate workers. Orchestrated a secure, fault-tolerant pipeline using AWS SQS and Step Functions, strategically isolating FastAPI servers from compute-heavy transcoding tasks.",
+    stack: [
+      "Python FastAPI",
+      "AWS DynamoDB",
+      "S3",
+      "SQS",
+      "Step Functions",
+      "Lambda",
+      "ECS Fargate",
+      "Terraform",
+    ],
+    github: "https://github.com/009-KumarJi/smart-media-uploader",
   },
   {
     title: "Article CMS",
     description:
-      "Backend system for article management with RBAC and secure content workflows.",
-    stack: ["Node.js", "Express", "MongoDB", "Cloudinary"],
+      "Built a robust backend content management system utilizing Node.js and Express to drive multi-role RBAC and secure editorial workflows. Integrated MongoDB for flexible data modeling alongside Cloudinary for optimized image storage and delivery.",
+    stack: ["Node.js", "Express.js", "MongoDB", "Cloudinary"],
+    github: "https://github.com/009-KumarJi/article_cms",
   },
 ];

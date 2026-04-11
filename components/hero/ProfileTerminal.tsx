@@ -47,7 +47,7 @@ export default function ProfileTerminal() {
 
       {/* Terminal footer */}
       <div className="px-4 pb-4 font-mono text-xs text-green-400">
-        <p>&gt; identity: backend_engineer</p>
+        <p>&gt; identity: software_engineer</p>
         <p>&gt; status: available_for_building</p>
       </div>
     </motion.div>
