@@ -15,27 +15,18 @@ interface ExperienceEntry {
 
 const experiences: ExperienceEntry[] = [
   {
-    role: "Associate Software Engineer",
-    company: "Accenture",
-    period: "Oct 2025 – Present",
+    role: "Software Engineer (Intern + FTE)",
+    company: "Accenture India",
+    period: "Feb 2025 – Present",
     location: "Bengaluru, India",
     type: "full-time",
-    techTags: ["Python", "AWS Lambda", "ECS Fargate", "REST APIs"],
+    techTags: ["Python", "AWS Lambda", "ECS Fargate", "REST APIs", "DynamoDB"],
     points: [
-      "Engineered core end-to-end features for enterprise-grade applications utilizing Python and AWS serverless architectures.",
-      "Architected high-performance REST APIs across AWS Lambda and ECS Fargate, successfully **decreasing average response times by 21×**.",
-    ],
-  },
-  {
-    role: "Software Engineering Intern",
-    company: "Accenture",
-    period: "Feb 2025 – Jun 2025",
-    location: "Bengaluru, India",
-    type: "internship",
-    techTags: ["Python", "Data Processing", "Automation"],
-    points: [
-      "Engineered Python-based backend utilities that automated simulation data processing workflows, streamlining performance analysis.",
-      "Analyzed large-scale simulation outputs using data-driven optimization, directly improving system-level decision workflows and operational efficiency.",
+      "Developed and optimized scalable RESTful APIs to process real-time sensor data from industrial databases (AVEVA CDS), improving API response time by **30%** and reducing data latency by **~25%** using asynchronous processing.",
+      "Spearheaded a cross-functional Agile team to design and deploy a cloud-native AWS data pipeline (Lambda, Fargate), collaborating with data scientists to process **10K+ events/day with >99% reliability**.",
+      "Implemented secure and scalable architecture using AWS VPC, rate limiting, and microservices-based design, reducing system failures by **20%** and improving uptime to **99.9%**.",
+      "Built and integrated end-to-end ML pipelines (data preprocessing, training, evaluation, deployment), reducing model deployment time by **40%** and enabling real-time inference with **<200ms latency**.",
+      "Stored model configurations in DynamoDB and developed prediction APIs, supporting high-concurrency requests (**~1K+ requests/min**).",
     ],
   },
   {
@@ -44,10 +35,10 @@ const experiences: ExperienceEntry[] = [
     period: "Aug 2024 – Dec 2024",
     location: "Remote",
     type: "internship",
-    techTags: ["Node.js", "JWT", "RBAC", "REST APIs"],
+    techTags: ["Node.js", "JWT", "RBAC", "REST APIs", "Microservices"],
     points: [
-      "Architected and built a scalable backend server foundation from scratch, designed to decouple services and easily support future operational expansion.",
-      "Implemented secure JWT-based authentication and Role-Based Access Control (RBAC), fortifying API endpoints and ensuring strict authorization boundaries.",
+      "Collaborated closely with product managers to architect a scalable microservices backend, mentoring 2 junior developers while completing decoupling workflows that supported a **40% increase in operational capacity**.",
+      "Implemented secure JWT-based authentication alongside Role-Based Access Control (RBAC), fortifying 50+ API endpoints and reducing unauthorized access attempts by **>99%**.",
     ],
   },
   {
@@ -58,7 +49,7 @@ const experiences: ExperienceEntry[] = [
     type: "internship",
     techTags: ["Directus", "MedusaJS", "Node.js"],
     points: [
-      "Integrated headless CMS platforms (Directus, MedusaJS) with custom Node.js backend APIs to deliver dynamic, high-performance content delivery systems.",
+      "Integrated headless CMS platforms (Directus, MedusaJS) with scalable Node.js backend APIs, serving optimized, high-volume data payloads to **5K+ daily active users** and decreasing page load times by **~35%**.",
     ],
   },
 ];

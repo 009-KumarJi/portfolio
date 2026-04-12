@@ -19,38 +19,35 @@ export const skills = {
   ],
 
   cloud: [
-    "AWS",
+    "Amazon Web Services",
     "Azure",
-    "Lambda",
-    "SQS",
-    "Step Functions",
-    "ECS Fargate",
-    "Docker",
-    "Terraform",
+    "AWS Lambda",
+    "AWS SQS",
+    "AWS Step Functions",
     "Apache Kafka",
   ],
 
   frontend: [
     "React.js",
-    "Next.js",
     "HTML",
     "CSS",
     "Material UI",
-    "Redux Toolkit",
   ],
 
   tools: [
     "Git",
     "Docker",
     "Postman",
-    "Linux",
     "CI/CD",
+    "Agile/Scrum",
+    "Code Reviews",
+    "Cross-functional Collaboration",
   ],
 
   concepts: [
     "Microservices Architecture",
     "Event-Driven Systems",
-    "JWT / OAuth2 / SAML",
+    "Authentication (JWT, OAuth2, SAML)",
     "RBAC",
     "Distributed Systems",
   ],

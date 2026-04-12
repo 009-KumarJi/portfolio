@@ -50,6 +50,28 @@ export const projects = [
     featured: true,
   },
   {
+    title: "Realtime Tic-Tac-Toe Engine",
+    description:
+      "Engineered a production-ready, server-authoritative multiplayer game engine featuring real-time matchmaking, 30-second bounded timed turns, and a persistent global leaderboard. Designed the backend using Nakama's embedded Goja JavaScript runtime alongside a globally-cached responsive PWA UI.",
+    highlights: [
+      "Server-authoritative game logic",
+      "Real-time matchmaking",
+      "Persistent global leaderboard",
+      "Responsive PWA UI",
+    ],
+    stack: [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Zustand",
+      "Nakama",
+      "Docker",
+    ],
+    github: "https://github.com/009-KumarJi/realtime-tictactoe-engine",
+    live: "https://realtime-tictactoe-engine.vercel.app/",
+    featured: false,
+  },
+  {
     title: "Article CMS",
     description:
       "Built a robust backend content management system utilizing Node.js and Express to drive multi-role RBAC and secure editorial workflows. Integrated MongoDB for flexible data modeling alongside Cloudinary for optimized image storage and delivery.",
