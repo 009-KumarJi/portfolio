@@ -1,19 +1,20 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Krishna Kumar | Software Engineer — Backend & Cloud",
+  title: "Krishna Kumar | Backend Engineer - Distributed Systems & AWS",
   description:
-    "Software engineer at Accenture building scalable APIs, cloud-native systems, and production-grade full-stack applications. Specializing in Python, Node.js, AWS, and distributed architectures.",
+    "Backend engineer at Accenture building APIs, asynchronous cloud workflows, distributed systems, and AI-powered backend capabilities with Node.js, Python, AWS, Redis, and DynamoDB.",
   keywords: [
-    "software engineer",
     "backend engineer",
-    "full stack developer",
+    "distributed systems",
     "cloud engineer",
+    "AI-powered systems",
     "Krishna Kumar",
     "Python",
     "Node.js",
     "AWS",
-    "React",
+    "Redis",
+    "DynamoDB",
   ],
 };
 

@@ -18,7 +18,7 @@ export default function ProjectsSection() {
           Featured Projects
         </h2>
         <p className="text-gray-400 mb-10">
-          Production-deployed systems and engineering side-projects.
+          Backend-heavy systems with realtime messaging, event-driven AWS processing, auth, storage, and deployment concerns.
         </p>
       </motion.div>
 

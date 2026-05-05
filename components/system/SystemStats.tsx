@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import Section from "../ui/Section";
 
 const metrics = [
-  { value: "1+", label: "Year Experience", icon: "📅" },
-  { value: "21×", label: "API Speed Boost", icon: "⚡" },
-  { value: "4", label: "Professional Roles", icon: "💼" },
-  { value: "3", label: "Deployed Projects", icon: "🚀" },
+  { value: "1+", label: "Year Backend Experience", icon: "API" },
+  { value: "AWS", label: "Lambda, SQS, Step Functions", icon: "Cloud" },
+  { value: "Redis", label: "Sessions, Presence, Rate Limits", icon: "Cache" },
+  { value: "3", label: "Backend-Heavy Projects", icon: "Build" },
 ];
 
 export default function SystemStats() {
@@ -23,7 +23,7 @@ export default function SystemStats() {
             transition={{ duration: 0.4, delay: i * 0.1 }}
             className="bg-[var(--bg-card)] border border-gray-800 rounded-xl p-5 md:p-6 text-center hover:border-[var(--accent)]/30 transition-colors duration-300 group"
           >
-            <span className="text-2xl mb-2 block group-hover:scale-110 transition-transform duration-300">
+            <span className="text-xs mb-2 inline-flex min-h-7 items-center rounded-full border border-gray-700 px-2.5 py-1 text-gray-400 group-hover:border-[var(--accent)]/40 transition-colors">
               {metric.icon}
             </span>
             <p className="text-2xl md:text-3xl font-bold text-white">

@@ -8,10 +8,11 @@ const skillCategories = [
   { title: "Languages", items: skills.languages, accent: true },
   { title: "Backend & APIs", items: skills.backend, accent: true },
   { title: "Databases & Caching", items: skills.databases, accent: false },
-  { title: "Cloud & DevOps", items: skills.cloud, accent: false },
-  { title: "Frontend", items: skills.frontend, accent: false },
+  { title: "Cloud & AWS", items: skills.cloud, accent: true },
+  { title: "AI Backend", items: skills.aiBackend, accent: false },
   { title: "Tools", items: skills.tools, accent: false },
   { title: "Concepts", items: skills.concepts, accent: false },
+  { title: "Frontend Familiarity", items: skills.frontend, accent: false },
 ];
 
 function SkillGroup({
@@ -68,7 +69,7 @@ export default function SkillsMatrix() {
       >
         <h2 className="text-3xl font-bold mb-2 tracking-tight">Skills</h2>
         <p className="text-gray-400 mb-10">
-          Core competencies across the full stack — strongest areas highlighted.
+          Backend-first toolkit across APIs, data stores, AWS infrastructure, and AI-capable service design.
         </p>
       </motion.div>
 

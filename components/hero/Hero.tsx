@@ -32,13 +32,13 @@ export default function Hero() {
         </motion.div>
 
         <h1 className="text-3xl md:text-5xl font-bold leading-snug tracking-tight">
-          Software Engineer
-          <span className="text-[var(--accent)]"> — Backend & Cloud</span>
+          Backend Engineer
+          <span className="text-[var(--accent)]"> | Distributed Systems</span>
         </h1>
 
         <p className="mt-4 text-gray-400 text-base md:text-lg leading-relaxed">
-          Building production-grade APIs, cloud-native architectures, and
-          full-stack applications at{" "}
+          Building production-grade APIs, event-driven AWS workflows, realtime
+          systems, and AI-ready backend services at{" "}
           <span className="text-white font-medium">Accenture</span>.
         </p>
 

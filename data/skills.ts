@@ -1,30 +1,43 @@
 export const skills = {
-  languages: ["Python", "Java", "JavaScript", "TypeScript", "Golang", "C++"],
+  languages: ["TypeScript", "JavaScript", "Python", "Java", "Go", "C++"],
 
   backend: [
-    "FastAPI",
     "Node.js",
     "Express.js",
-    "Spring Boot",
+    "FastAPI",
     "REST APIs",
-    "GraphQL",
+    "WebSockets",
+    "Socket.IO",
+    "JWT",
+    "OAuth2",
   ],
 
   databases: [
-    "PostgreSQL",
     "MongoDB",
+    "PostgreSQL",
     "MySQL",
     "Redis",
     "AWS DynamoDB",
   ],
 
   cloud: [
-    "Amazon Web Services",
-    "Azure",
     "AWS Lambda",
+    "ECS Fargate",
+    "Amazon S3",
     "AWS SQS",
     "AWS Step Functions",
-    "Apache Kafka",
+    "IAM",
+    "VPC",
+    "Terraform",
+  ],
+
+  aiBackend: [
+    "Inference APIs",
+    "Model configuration storage",
+    "Async AI workflows",
+    "Rate limiting",
+    "Request validation",
+    "Cost-aware API design",
   ],
 
   frontend: [
@@ -32,6 +45,7 @@ export const skills = {
     "HTML",
     "CSS",
     "Material UI",
+    "Redux Toolkit",
   ],
 
   tools: [
@@ -45,10 +59,11 @@ export const skills = {
   ],
 
   concepts: [
+    "Distributed Systems",
     "Microservices Architecture",
     "Event-Driven Systems",
-    "Authentication (JWT, OAuth2, SAML)",
+    "Authentication",
     "RBAC",
-    "Distributed Systems",
+    "Cloud Security",
   ],
 };

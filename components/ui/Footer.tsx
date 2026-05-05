@@ -18,8 +18,8 @@ export default function Footer() {
             Let&apos;s Connect
           </h2>
           <p className="text-gray-400 max-w-md mx-auto mb-8">
-            Open to backend, full-stack, and cloud engineering opportunities.
-            Feel free to reach out.
+            Open to backend engineering roles focused on APIs, distributed systems,
+            AWS workflows, and AI-powered backend products.
           </p>
 
           <div className="flex justify-center gap-3 sm:gap-4 flex-wrap">

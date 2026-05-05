@@ -87,8 +87,8 @@ export default function ProjectCard({
         {description}
       </p>
 
-      {/* Highlights — only for featured */}
-      {featured && highlights && (
+      {/* Highlights */}
+      {highlights && (
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
           {highlights.map((h, i) => (
             <div key={i} className="flex items-center gap-2 text-sm text-gray-300">
