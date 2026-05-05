@@ -9,7 +9,8 @@ const skillCategories = [
   { title: "Backend & APIs", items: skills.backend, accent: true },
   { title: "Databases & Caching", items: skills.databases, accent: false },
   { title: "Cloud & AWS", items: skills.cloud, accent: true },
-  { title: "AI Backend", items: skills.aiBackend, accent: false },
+  { title: "AI Systems", items: skills.aiSystems, accent: false },
+  { title: "Backend Reliability", items: skills.reliability, accent: false },
   { title: "Tools", items: skills.tools, accent: false },
   { title: "Concepts", items: skills.concepts, accent: false },
   { title: "Frontend Familiarity", items: skills.frontend, accent: false },
@@ -69,7 +70,7 @@ export default function SkillsMatrix() {
       >
         <h2 className="text-3xl font-bold mb-2 tracking-tight">Skills</h2>
         <p className="text-gray-400 mb-10">
-          Backend-first toolkit across APIs, data stores, AWS infrastructure, and AI-capable service design.
+          Backend-first toolkit across APIs, data stores, AWS infrastructure, AI system integration, and reliability patterns.
         </p>
       </motion.div>
 

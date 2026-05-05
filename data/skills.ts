@@ -31,12 +31,18 @@ export const skills = {
     "Terraform",
   ],
 
-  aiBackend: [
+  aiSystems: [
+    "LLM APIs",
+    "Prompt orchestration",
     "Inference APIs",
     "Model configuration storage",
-    "Async AI workflows",
+  ],
+
+  reliability: [
+    "Async workflows",
     "Rate limiting",
-    "Request validation",
+    "Retries",
+    "Caching",
     "Cost-aware API design",
   ],
 
