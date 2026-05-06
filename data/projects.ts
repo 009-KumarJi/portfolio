@@ -1,5 +1,30 @@
 export const projects = [
   {
+    title: "NoviSentinel",
+    description:
+      "Built an AI safety and PII firewall that sits between LLM apps and their users, scanning inputs and outputs in real time. Detects prompt injection (regex + ML), PII leaks, exposed credentials, and toxicity — with a Python SDK, HMAC-signed webhooks, and a self-hosted Docker Compose stack.",
+    highlights: [
+      "Two-layer injection detection: regex short-circuits ML for sub-1ms blocking",
+      "Presidio NLP for PII redaction (SSN, credit card, email, phone, IP)",
+      "Regex secrets scanner for 10 credential types (OpenAI, AWS, GitHub, JWT)",
+      "Detoxify ML toxicity detection with per-category severity thresholds",
+      "HMAC-SHA256 signed webhooks for real-time Slack/PagerDuty alerts",
+      "Python SDK with sync and async clients — 5-line integration",
+    ],
+    stack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "HuggingFace Transformers",
+      "Presidio",
+      "detoxify",
+      "Docker",
+    ],
+    github: "https://github.com/009-KumarJi/novi-sentinel",
+    featured: true,
+  },
+  {
     title: "NoviConnect",
     description:
       "Built a backend-heavy realtime chat platform with Express 5, TypeScript, MongoDB, Redis, and Socket.IO. The service owns cookie-based auth, OTP and Google-assisted onboarding, chat/group APIs, unread state, read receipts, encrypted payload storage, and media attachment orchestration.",
