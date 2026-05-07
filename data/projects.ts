@@ -21,7 +21,7 @@ export const projects = [
       "detoxify",
       "Docker",
     ],
-    github: "https://github.com/009-KumarJi/novi-sentinel",
+    github: "https://github.com/009-KumarJi/novisentinel-core",
     featured: true,
   },
   {
