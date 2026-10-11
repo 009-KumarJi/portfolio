@@ -12,7 +12,7 @@ Personal portfolio site built with Next.js 16, React 19, Tailwind CSS v4, and Fr
 |---|---|
 | **Hero** | Intro with animated terminal-style profile card and CTA buttons |
 | **System Stats** | At-a-glance metrics (experience, cloud, auth stack) |
-| **Experience** | Timeline of roles at Accenture, Envint Global, and WeFrameTech |
+| **Experience** | Timeline of roles at Accenture and Envint Global |
 | **Projects** | Featured projects with live/GitHub links and tech stack badges |
 | **Skills** | Categorized skill matrix (Languages, Backend, Databases, Cloud, Concepts) |
 | **Certifications** | Oracle Cloud professional certifications with badge links |

@@ -15,42 +15,40 @@ interface ExperienceEntry {
 
 const experiences: ExperienceEntry[] = [
   {
-    role: "Software Engineer (Intern + FTE)",
+    role: "Associate Software Engineer",
     company: "Accenture India",
-    period: "Feb 2025 - Present",
+    period: "Oct 2025 - Present",
     location: "Bengaluru, India",
     type: "full-time",
-    techTags: ["Python", "REST APIs", "AWS Lambda", "ECS Fargate", "DynamoDB"],
+    techTags: ["Python", "FastAPI", "AWS Lambda", "ECS Fargate", "SageMaker", "DynamoDB", "SQS", "Step Functions"],
     points: [
-      "Built backend APIs for AVEVA CDS industrial sensor-data workflows, separating ingestion, validation, and dashboard-facing reads through asynchronous processing.",
-      "Worked on AWS data pipelines using Lambda/Fargate components for long-running processing, status tracking, and downstream prediction API handoff.",
-      "Stored model and pipeline configuration in DynamoDB, shaping API contracts around validation, traceability, and inference-ready payloads.",
-      "Handled backend reliability concerns across VPC-aware services, rate limiting, auth boundaries, and release/debug coordination with cross-functional teams.",
+      "Wrote the FastAPI APIs for the prediction system and took its core logic from scratch to the system's first production go-live.",
+      "Built the Fargate data pipeline that reliably pulls AVEVA CDS industrial sensor data and feeds the APIs, ML pipeline, and model-evaluation pipeline.",
+      "Developed AWS async processing (Lambda, SQS, Step Functions, DynamoDB state) with reliability ownership: VPC-aware services, rate limiting, auth boundaries.",
+      "Building the complete SageMaker flow — data retrieval, processing, model prediction, and alerts — supporting 80k+ models.",
     ],
   },
   {
-    role: "Backend Developer Intern",
+    role: "Software Engineer Intern",
+    company: "Accenture India",
+    period: "Feb 2025 - Jun 2025",
+    location: "Bengaluru, India",
+    type: "internship",
+    techTags: ["Python", "Machine Learning", "Simulation", "Predictive Analysis"],
+    points: [
+      "Modeled discrete-event simulations of greenfield shop-floor operations using ML algorithms to support predictive analysis.",
+    ],
+  },
+  {
+    role: "Full Stack Developer Intern",
     company: "Envint Global",
     period: "Aug 2024 - Dec 2024",
     location: "Remote",
     type: "internship",
-    techTags: ["Node.js", "Express.js", "JWT", "Redis", "MongoDB", "RBAC"],
+    techTags: ["Node.js", "Express.js", "Python", "JWT", "RBAC"],
     points: [
-      "Built Node.js/Express CMS APIs with JWT access tokens, Redis-backed refresh sessions, encrypted cookies, bcrypt hashing, and MongoDB models.",
-      "Implemented Admin/Moderator/User RBAC middleware and request validators to protect article, user, file, and editorial workflow endpoints.",
-      "Integrated Cloudinary-backed file handling and cookie-based session flows for authenticated content-management operations.",
-    ],
-  },
-  {
-    role: "JAMstack Developer Intern",
-    company: "WeFrameTech",
-    period: "Jun 2024 - Jul 2024",
-    location: "Remote",
-    type: "internship",
-    techTags: ["Directus", "MedusaJS", "Node.js", "Headless CMS"],
-    points: [
-      "Integrated Directus and MedusaJS-backed content/commerce flows, normalizing API payloads for reusable JAMstack delivery.",
-      "Connected backend content models to frontend-facing APIs while keeping data contracts consistent across pages and components.",
+      "Developed the backend base of a new project from scratch — Node.js/Express APIs serving a sustainable energy consumption calculator — with JWT-based authentication and role-based access control (RBAC), designed for future expansion.",
+      "Built Python utilities for PDF creation and extraction to automate document workflows for ESG/sustainability reporting.",
     ],
   },
 ];
@@ -136,7 +134,7 @@ export default function ExperienceTimeline() {
       >
         <h2 className="text-3xl font-bold mb-2 tracking-tight">Experience</h2>
         <p className="text-gray-400 mb-10">
-          Backend engineering experience across industrial data APIs, AWS workflows, auth systems, and headless content integrations.
+          Backend engineering experience across industrial data APIs, AWS workflows, sustainability tooling, and AI-ready prediction services.
         </p>
       </motion.div>
 

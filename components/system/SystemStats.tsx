@@ -7,7 +7,7 @@ const metrics = [
   { value: "1+", label: "Year Backend Experience", icon: "API" },
   { value: "AWS", label: "Lambda, SQS, Step Functions", icon: "Cloud" },
   { value: "Redis", label: "Sessions, Presence, Rate Limits", icon: "Cache" },
-  { value: "3", label: "Backend-Heavy Projects", icon: "Build" },
+  { value: "5", label: "Backend-Heavy Projects", icon: "Build" },
 ];
 
 export default function SystemStats() {
