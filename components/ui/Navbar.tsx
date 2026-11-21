@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useTelemetry } from "@/components/context/TelemetryContext";
 import { AudioEngine } from "@/lib/audio";
 
@@ -37,12 +38,21 @@ export default function Navbar() {
             <a
               href="#"
               onClick={() => AudioEngine.click(800)}
-              className="flex items-center gap-2 group"
+              className="flex items-center gap-2.5 group"
             >
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#10b981] shadow-[0_0_10px_rgba(16,185,129,0.7)]" />
-              </span>
+              {/* Micro Biometric Avatar */}
+              <div className="relative w-7 h-7 rounded-full overflow-hidden border border-[#00f2fe]/40 group-hover:border-[#00f2fe] group-hover:shadow-[0_0_10px_rgba(0,242,254,0.4)] transition-all shrink-0 bg-[#0d1117]">
+                <Image
+                  src="/profile.png"
+                  alt="Krishna Kumar"
+                  width={28}
+                  height={28}
+                  className="w-full h-full object-cover object-top"
+                  priority
+                />
+                <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-[#10b981] border border-[#08090c]" />
+              </div>
+
               <span className="font-mono text-sm sm:text-base font-bold text-[#10b981] tracking-tight group-hover:text-[#34d399] transition-colors">
                 KK://systems
               </span>

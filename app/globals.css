@@ -58,3 +58,13 @@ html {
   background: rgba(16, 185, 129, 0.25);
   color: #10b981;
 }
+
+/* Biometric scanline animation */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(500%); }
+}
+
+.animate-scanline {
+  animation: scanline 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
