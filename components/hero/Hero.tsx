@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTelemetry } from "@/components/context/TelemetryContext";
 import { AudioEngine } from "@/lib/audio";
@@ -155,6 +156,15 @@ export default function Hero() {
               <span>⚡</span>
               <span>[EXECUTE WORKFLOWS]</span>
             </button>
+
+            <Link
+              href="/resume"
+              onClick={() => AudioEngine.click(1200)}
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#0d1117] hover:bg-[#161b22] border border-[#10b981]/40 hover:border-[#10b981] text-[#10b981] hover:text-white font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.15)] active:translate-y-px"
+            >
+              <span>📄</span>
+              <span>[VIEW RESUME]</span>
+            </Link>
 
             <button
               onClick={openCmd}

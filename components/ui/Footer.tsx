@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useTelemetry } from "@/components/context/TelemetryContext";
 
 export default function Footer() {
@@ -76,6 +77,13 @@ export default function Footer() {
           {/* Right Column: Protocols & Direct Links */}
           <div className="md:col-span-5 flex flex-col md:items-end justify-between gap-2">
             <div className="flex flex-wrap items-center md:justify-end gap-2 text-gray-400 text-xs">
+              <Link
+                href="/resume"
+                className="text-[#10b981] hover:underline font-semibold"
+              >
+                [GET /resume]
+              </Link>
+              <span className="text-gray-600">|</span>
               <a
                 href="mailto:krishna902kumar@gmail.com"
                 className="text-[#00f2fe] hover:underline"

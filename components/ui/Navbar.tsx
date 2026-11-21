@@ -102,14 +102,15 @@ export default function Navbar() {
               <span>{sfxEnabled ? "[SFX: ACTIVE]" : "[SFX: MUTED]"}</span>
             </button>
 
-            {/* Resume Page Link */}
+            {/* Resume Page Link - Prominent on Mobile & Desktop */}
             <Link
               href="/resume"
               onClick={() => AudioEngine.click(1200)}
-              className="hidden md:inline-flex items-center px-3 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] hover:border-[#10b981]/40 font-mono text-xs text-gray-300 hover:text-white transition-colors"
+              className="inline-flex items-center px-2 sm:px-3 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-[#10b981]/40 hover:border-[#10b981] font-mono text-xs text-[#10b981] hover:text-white transition-all shadow-[0_0_10px_rgba(16,185,129,0.15)] active:translate-y-px"
             >
-              <span className="text-[#10b981] mr-1.5 font-bold">📄</span>
-              <span>[GET /resume]</span>
+              <span className="mr-1">📄</span>
+              <span className="hidden sm:inline">[GET /resume]</span>
+              <span className="sm:hidden font-semibold">Resume</span>
             </Link>
 
             {/* ⌘K Command Palette Button */}
@@ -158,6 +159,19 @@ export default function Navbar() {
               <span>p99: 12ms</span>
             </div>
 
+            {/* Featured Resume Link in Drawer */}
+            <Link
+              href="/resume"
+              onClick={() => {
+                AudioEngine.click(1200);
+                setMobileOpen(false);
+              }}
+              className="w-full py-2.5 px-3 rounded-lg bg-[#10b981]/15 hover:bg-[#10b981]/25 border border-[#10b981]/40 text-[#10b981] font-bold flex items-center justify-center gap-2 transition-all shadow-[0_0_12px_rgba(16,185,129,0.2)]"
+            >
+              <span>📄</span>
+              <span>[VIEW RESUME — WEB &amp; PDF]</span>
+            </Link>
+
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -173,16 +187,14 @@ export default function Navbar() {
             ))}
 
             <div className="flex gap-2 pt-2">
-              <Link
-                href="/resume"
-                onClick={() => {
-                  AudioEngine.click(1200);
-                  setMobileOpen(false);
-                }}
+              <a
+                href="/krishna_kumar.pdf"
+                download="Krishna_Kumar_Resume.pdf"
+                onClick={() => AudioEngine.chirp()}
                 className="flex-1 text-center py-2 rounded bg-[#0d1117] border border-white/10 text-xs text-gray-300 hover:text-white"
               >
-                📄 GET /resume
-              </Link>
+                ⬇ Direct PDF Download
+              </a>
               <button
                 onClick={() => {
                   toggleSfx();
