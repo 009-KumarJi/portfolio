@@ -5,14 +5,14 @@ import Section from "../ui/Section";
 import { skills } from "@/data/skills";
 
 const skillCategories = [
-  { title: "Languages", items: skills.languages, accent: true },
+  { title: "Generative & Agentic AI", items: skills.aiSystems, accent: true },
+  { title: "Cloud & AWS Infrastructure", items: skills.cloud, accent: true },
   { title: "Backend & APIs", items: skills.backend, accent: true },
-  { title: "Databases & Caching", items: skills.databases, accent: false },
-  { title: "Cloud & AWS", items: skills.cloud, accent: true },
-  { title: "AI Systems", items: skills.aiSystems, accent: false },
-  { title: "Backend Reliability", items: skills.reliability, accent: false },
-  { title: "Tools", items: skills.tools, accent: false },
-  { title: "Concepts", items: skills.concepts, accent: false },
+  { title: "Databases & Storage", items: skills.databases, accent: false },
+  { title: "Distributed Reliability", items: skills.reliability, accent: false },
+  { title: "Languages", items: skills.languages, accent: false },
+  { title: "Testing, Tools & DevOps", items: skills.tools, accent: false },
+  { title: "Architecture Concepts", items: skills.concepts, accent: false },
   { title: "Frontend Familiarity", items: skills.frontend, accent: false },
 ];
 
@@ -70,7 +70,7 @@ export default function SkillsMatrix() {
       >
         <h2 className="text-3xl font-bold mb-2 tracking-tight">Skills</h2>
         <p className="text-gray-400 mb-10">
-          Backend-first toolkit across APIs, data stores, AWS infrastructure, AI system integration, and reliability patterns.
+          Backend, Cloud, and Generative AI toolkit spanning Agentic workflows, AWS distributed infrastructure, high-throughput microservices, and resilient data stores.
         </p>
       </motion.div>
 

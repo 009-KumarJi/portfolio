@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import Section from "../ui/Section";
 
 const metrics = [
-  { value: "1+", label: "Year Backend Experience", icon: "API" },
-  { value: "AWS", label: "Lambda, SQS, Step Functions", icon: "Cloud" },
-  { value: "Redis", label: "Sessions, Presence, Rate Limits", icon: "Cache" },
-  { value: "5", label: "Backend-Heavy Projects", icon: "Build" },
+  { value: "Agentic AI", label: "Strands SDK, Bedrock & MCP", icon: "AI" },
+  { value: "AWS Cloud", label: "Lambda, Step Functions & Fargate", icon: "Cloud" },
+  { value: "Backend", label: "FastAPI, aiohttp & Distributed APIs", icon: "API" },
+  { value: "Real-Time", label: "SSE Streaming & DynamoDB State", icon: "Data" },
 ];
 
 export default function SystemStats() {

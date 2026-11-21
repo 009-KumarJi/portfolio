@@ -32,13 +32,13 @@ export default function Hero() {
         </motion.div>
 
         <h1 className="text-3xl md:text-5xl font-bold leading-snug tracking-tight">
-          Backend Engineer
-          <span className="text-[var(--accent)]"> | Distributed Systems</span>
+          Backend & Cloud Engineer
+          <span className="text-[var(--accent)]"> | Generative AI Systems</span>
         </h1>
 
         <p className="mt-4 text-gray-400 text-base md:text-lg leading-relaxed">
-          Building production-grade APIs, event-driven AWS workflows, realtime
-          systems, and AI-ready backend services at{" "}
+          Architecting production-grade Agentic AI workflows, distributed AWS pipelines,
+          real-time streaming systems, and resilient backend microservices at{" "}
           <span className="text-white font-medium">Accenture</span>.
         </p>
 

@@ -20,12 +20,22 @@ const experiences: ExperienceEntry[] = [
     period: "Oct 2025 - Present",
     location: "Bengaluru, India",
     type: "full-time",
-    techTags: ["Python", "FastAPI", "AWS Lambda", "ECS Fargate", "SageMaker", "DynamoDB", "SQS", "Step Functions"],
+    techTags: [
+      "AWS Strands SDK",
+      "Model Context Protocol (MCP)",
+      "Amazon Bedrock",
+      "Python",
+      "FastAPI",
+      "AWS Step Functions",
+      "AWS Lambda",
+      "ECS Fargate",
+      "DynamoDB",
+    ],
     points: [
-      "Wrote the FastAPI APIs for the prediction system and took its core logic from scratch to the system's first production go-live.",
-      "Built the Fargate data pipeline that reliably pulls AVEVA CDS industrial sensor data and feeds the APIs, ML pipeline, and model-evaluation pipeline.",
-      "Developed AWS async processing (Lambda, SQS, Step Functions, DynamoDB state) with reliability ownership: VPC-aware services, rate limiting, auth boundaries.",
-      "Building the complete SageMaker flow — data retrieval, processing, model prediction, and alerts — supporting 80k+ models.",
+      "Architected and deployed an **Agentic AI platform** utilizing AWS Strands SDK, Claude on Bedrock, and a standalone ECS Fargate Model Context Protocol (MCP) server, orchestrating multi-step industrial root-cause analysis with closed-loop DynamoDB write-backs via real-time SSE streaming.",
+      "Engineered a distributed ML model training pipeline orchestrating **AWS Step Functions** (Distributed Map at 50 concurrency), routing training jobs to ECS Fargate via VPC Lattice and maintaining execution state machines in DynamoDB.",
+      "Engineered an industrial sensor data pipeline using async **aiohttp** connection pooling with X-Ray tracing, 30+ custom unit conversions, stream data filtration logic, and chunked streaming across distributed microservices.",
+      "Developed resilient, event-driven backend microservices with **FastAPI**, AWS Lambda (SnapStart), SQS, and DynamoDB single-table design with PITR-to-Parquet exports via Durable Execution SDK, monitored by 30+ CloudWatch composite alarms.",
     ],
   },
   {
@@ -134,7 +144,7 @@ export default function ExperienceTimeline() {
       >
         <h2 className="text-3xl font-bold mb-2 tracking-tight">Experience</h2>
         <p className="text-gray-400 mb-10">
-          Backend engineering experience across industrial data APIs, AWS workflows, sustainability tooling, and AI-ready prediction services.
+          Production engineering experience across Agentic AI workflows, distributed AWS pipelines, industrial sensor streaming, and high-throughput backend services.
         </p>
       </motion.div>
 
