@@ -47,7 +47,7 @@ export default function Navbar() {
                   alt="Krishna Kumar"
                   width={28}
                   height={28}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-300"
                   priority
                 />
                 <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-[#10b981] border border-[#08090c]" />

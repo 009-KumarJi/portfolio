@@ -99,7 +99,7 @@ export default function Hero() {
                 alt="Krishna Kumar"
                 width={56}
                 height={56}
-                className="w-full h-full object-cover object-top rounded contrast-105 group-hover:scale-105 transition-transform duration-200"
+                className="w-full h-full object-cover object-top rounded grayscale contrast-125 brightness-95 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-300"
                 priority
               />
               <span className="absolute bottom-0.5 right-0.5 flex h-2 w-2 z-20">
@@ -322,7 +322,7 @@ export default function Hero() {
             {activeTab === "whoami" ? (
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 py-1">
                 {/* Biometric Hologram Image Frame */}
-                <div className="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden border border-[#00f2fe]/50 bg-[#08090c] p-0.5 shadow-[0_0_20px_rgba(0,242,254,0.2)]">
+                <div className="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden border border-[#00f2fe]/50 bg-[#08090c] p-0.5 shadow-[0_0_20px_rgba(0,242,254,0.2)] group cursor-pointer">
                   {/* Corner reticles */}
                   <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#00f2fe] z-20 pointer-events-none" />
                   <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-[#00f2fe] z-20 pointer-events-none" />
@@ -334,7 +334,7 @@ export default function Hero() {
                     alt="Krishna Kumar Biometric Identity"
                     width={112}
                     height={112}
-                    className="w-full h-full object-cover object-top rounded contrast-110"
+                    className="w-full h-full object-cover object-top rounded grayscale contrast-125 brightness-95 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-300"
                     priority
                   />
                   <div className="absolute bottom-1 left-1 right-1 py-0.5 bg-black/85 backdrop-blur-sm border border-white/10 rounded text-[9px] text-center font-mono text-[#00f2fe] z-20">
