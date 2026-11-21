@@ -433,14 +433,6 @@ Bachelor of Engineering, CGPA: 7.5 | 2021 – 2025
                     <div className="font-bold text-white text-base print:text-black flex items-center gap-2">
                       <span>NoviSentinel</span>
                       <a
-                        href="https://novisentinel.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-mono text-xs text-[#10b981] hover:underline print:text-black"
-                      >
-                        [Live ↗]
-                      </a>
-                      <a
                         href="https://github.com/009-KumarJi/novisentinel-core"
                         target="_blank"
                         rel="noopener noreferrer"
