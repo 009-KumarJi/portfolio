@@ -80,11 +80,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright line */}
-        <div className="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs text-gray-400">
+        {/* Bottom copyright line & engineering quote */}
+        <div className="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-gray-400">
           <p>© {new Date().getFullYear()} Krishna Kumar [KK://systems]. All protocols reserved.</p>
-          <p className="text-[10px] tracking-wider uppercase text-gray-400">
-            SYNCHRONIZED WITH GLOBAL MESH
+          <p className="text-[11px] text-gray-400 flex items-center gap-1.5 text-center sm:text-right">
+            <span className="text-[#00f2fe]">⚡</span>
+            <span>
+              Built by me, my brain, my CPU, and of course{" "}
+              <span className="text-[#00f2fe] font-medium">Antigravity</span> — because frontend can be done by anyone.
+            </span>
           </p>
         </div>
       </div>
