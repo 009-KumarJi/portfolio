@@ -1,65 +1,54 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Section from "../ui/Section";
 import { certifications } from "@/data/certifications";
+import { AudioEngine } from "@/lib/audio";
 
 export default function Certifications() {
   return (
-    <Section className="pb-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
-      >
-        <h2 className="text-3xl font-bold mb-2 tracking-tight">
-          Certifications
+    <section
+      id="certifications"
+      className="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 py-12"
+    >
+      <div className="border-b border-white/[0.08] pb-4 mb-6">
+        <div className="font-mono text-xs text-[#f59e0b] tracking-widest uppercase flex items-center gap-2">
+          <span>CREDENTIALS &amp; CLOUD ARCHITECT ACCREDITATIONS</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-[#f59e0b] inline-block" />
+        </div>
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">
+          Oracle Cloud Infrastructure (OCI) Certifications
         </h2>
-        <p className="text-gray-400 mb-10">
-          Industry-recognized credentials.
-        </p>
-      </motion.div>
+      </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {certifications.map((cert, i) => (
           <motion.a
             key={i}
             href={cert.link}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => AudioEngine.click(1200)}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: i * 0.1 }}
-            className="bg-[var(--bg-card)] border border-gray-800 rounded-xl p-5 hover:border-[var(--accent)]/40 transition-all duration-300 group flex items-center gap-4"
+            className="rounded-xl bg-[#0d1117] border border-white/[0.08] p-5 hover:border-[#10b981]/50 transition-all duration-300 group flex items-center gap-4 shadow-lg shadow-black/40"
           >
-            <div className="w-10 h-10 rounded-lg bg-[var(--accent-muted)] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-              <svg
-                className="w-5 h-5 text-[var(--accent)]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                />
-              </svg>
+            <div className="w-10 h-10 rounded-lg bg-[#10b981]/10 border border-[#10b981]/25 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <span className="text-[#10b981] font-bold text-sm">OCI</span>
             </div>
             <div className="flex-1">
-              <span className="text-sm md:text-base text-gray-200 group-hover:text-white transition-colors">
+              <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors">
                 {cert.title}
               </span>
-              <p className="text-xs text-gray-500 mt-0.5">
-                Verify credential ↗
+              <p className="text-xs text-[#10b981] mt-1 font-mono flex items-center gap-1">
+                <span>Verify Oracle Credential</span>
+                <span>↗</span>
               </p>
             </div>
           </motion.a>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

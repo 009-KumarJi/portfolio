@@ -1,108 +1,333 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import Section from "../ui/Section";
-import ProfileTerminal from "./ProfileTerminal";
+import { useTelemetry } from "@/components/context/TelemetryContext";
+import { AudioEngine } from "@/lib/audio";
 
 export default function Hero() {
-  return (
-    <Section className="min-h-screen flex flex-col justify-center items-center md:flex-row md:justify-between gap-10 text-center md:text-left pt-20">
-      
-      {/* MOBILE IMAGE */}
-      <div className="md:hidden flex justify-center w-full">
-        <ProfileTerminal />
-      </div>
+  const { copyToClipboard, showToast, openCmd } = useTelemetry();
+  const [activeTab, setActiveTab] = useState<"post" | "health" | "ws">("post");
+  const [scenario, setScenario] = useState<"clean" | "injection" | "pii">("clean");
 
-      {/* TEXT BLOCK */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="max-w-md md:max-w-xl flex flex-col items-center md:items-start"
-      >
-        {/* Role badge */}
+  const handleSimulateInjection = () => {
+    AudioEngine.chirp();
+    setActiveTab("post");
+    setScenario("injection");
+    showToast("THREAT BLOCKED: 403 FORBIDDEN IN 0.28ms");
+  };
+
+  const handleSimulatePii = () => {
+    AudioEngine.chirp();
+    setActiveTab("post");
+    setScenario("pii");
+    showToast("PII DETECTED & REDACTED (2 ENTITIES)");
+  };
+
+  const handleSimulateClean = () => {
+    AudioEngine.click(800);
+    setActiveTab("post");
+    setScenario("clean");
+    showToast("TRACE NORMALIZED: 200 OK");
+  };
+
+  const handleTabChange = (tab: "post" | "health" | "ws") => {
+    AudioEngine.click(1000);
+    setActiveTab(tab);
+  };
+
+  const executeWorkflows = () => {
+    AudioEngine.chirp();
+    handleSimulateClean();
+    document.getElementById("architecture")?.scrollIntoView({ behavior: "smooth" });
+    showToast("WORKFLOW SIMULATION PIPELINE ACTIVE");
+  };
+
+  return (
+    <section className="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 pt-24 pb-16 lg:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        {/* LEFT COLUMN: Terminal Dossier & CTAs (7 Cols) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-800 bg-[var(--bg-card)] mb-6 text-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="lg:col-span-7 flex flex-col gap-5"
         >
-          <span className="w-2 h-2 bg-[var(--green)] rounded-full animate-pulse" />
-          <span className="text-gray-400">Open to Opportunities</span>
+          {/* Live Edge Status Pill */}
+          <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#0d1117] border border-[#10b981]/30 text-gray-200">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]" />
+              </span>
+              <span className="text-[#10b981] font-semibold">ENV: PRODUCTION</span>
+              <span className="text-gray-600">||</span>
+              <span className="text-[#00f2fe]">OPEN_FOR_HIRE = true</span>
+            </div>
+            <span className="px-2.5 py-1 rounded bg-[#0d1117] border border-white/[0.08] text-gray-400">
+              NODE: bom1-ctrl-01
+            </span>
+            <span className="px-2.5 py-1 rounded bg-[#0d1117] border border-white/[0.08] text-[#f59e0b]">
+              UP: 99.98%
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
+            Architecting Distributed Backends, Realtime Pipelines &amp;{" "}
+            <span className="text-[#10b981] drop-shadow-[0_0_20px_rgba(16,185,129,0.35)]">
+              Production GenAI Firewalls
+            </span>
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-base sm:text-lg text-gray-400 max-w-2xl leading-relaxed">
+            Senior Systems &amp; Distributed Backend Engineer specializing in sub-millisecond AI safety guardrails, distributed ML streaming pipelines, zero-trust inference proxies, and multi-region cloud topology across AWS &amp; OCI.
+          </p>
+
+          {/* CTA & Quick CLI Trigger */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+            <button
+              onClick={executeWorkflows}
+              type="button"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#10b981] text-[#08090c] font-mono text-sm font-bold tracking-wider transition-all duration-200 hover:bg-[#34d399] shadow-[0_0_20px_rgba(16,185,129,0.35)] active:translate-y-px"
+            >
+              <span>⚡</span>
+              <span>[EXECUTE WORKFLOWS]</span>
+            </button>
+
+            <button
+              onClick={openCmd}
+              type="button"
+              className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] hover:border-white/20 text-gray-300 font-mono text-xs transition-colors"
+            >
+              <span className="text-[#00f2fe]">&gt;</span>
+              <span>SYSTEM_SPEC.yaml</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-[#161b22] text-gray-400 text-[10px] ml-1">
+                ⌘K
+              </kbd>
+            </button>
+          </div>
+
+          {/* Monospace Copy Command */}
+          <div className="w-full max-w-xl rounded-lg bg-[#0d1117] border border-white/[0.08] p-2.5 flex items-center justify-between font-mono text-xs">
+            <div className="flex items-center gap-2 overflow-x-auto select-all pr-2">
+              <span className="text-[#10b981] select-none">$</span>
+              <span className="text-gray-200 truncate">
+                curl -s https://krishna.novitrail.com/api/v1/ping
+              </span>
+            </div>
+            <button
+              onClick={() =>
+                copyToClipboard(
+                  "curl -s https://krishna.novitrail.com/api/v1/ping",
+                  "CURL COMMAND COPIED"
+                )
+              }
+              type="button"
+              title="Copy CLI Command"
+              className="px-2 py-1 rounded bg-[#161b22] hover:bg-[#1f242c] border border-white/[0.08] text-gray-300 hover:text-[#10b981] transition-colors text-[11px] shrink-0"
+            >
+              copy
+            </button>
+          </div>
+
+          {/* Terminal Link Badges */}
+          <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs text-gray-400">
+            <a
+              href="https://github.com/009-KumarJi"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => AudioEngine.click(1000)}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] hover:border-[#10b981]/40 text-gray-300 hover:text-white transition-colors"
+            >
+              <span className="text-[#00f2fe]">git://</span> github.com/009-KumarJi
+            </a>
+            <a
+              href="https://www.linkedin.com/in/krishna-kumar-975b25186/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => AudioEngine.click(1000)}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] hover:border-[#00f2fe]/40 text-gray-300 hover:text-white transition-colors"
+            >
+              <span className="text-[#10b981]">in://</span> linkedin/krishna-kumar
+            </a>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0d1117] border border-[#f59e0b]/30 text-[#f59e0b]">
+              <span>cert://</span> OCI_ARCHITECT_x2
+            </span>
+          </div>
         </motion.div>
 
-        <h1 className="text-3xl md:text-5xl font-bold leading-snug tracking-tight">
-          Backend & Cloud Engineer
-          <span className="text-[var(--accent)]"> | Generative AI Systems</span>
-        </h1>
+        {/* RIGHT COLUMN: Realtime Live Request Inspector (5 Cols) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="lg:col-span-5 w-full flex flex-col rounded-xl bg-[#0d1117] border border-white/[0.08] overflow-hidden shadow-2xl shadow-black/80"
+        >
+          {/* Window Chrome / Route Bar */}
+          <div className="h-9 px-4 bg-[#12161f] flex items-center justify-between border-b border-white/[0.08] font-mono text-xs">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block" />
+              <span className="ml-2 text-gray-400 text-[11px]">telemetry-node02//edge-bom1</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[#10b981] text-[10px] font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
+              <span>LIVE</span>
+            </div>
+          </div>
 
-        <p className="mt-4 text-gray-400 text-base md:text-lg leading-relaxed">
-          Architecting production-grade Agentic AI workflows, distributed AWS pipelines,
-          real-time streaming systems, and resilient backend microservices at{" "}
-          <span className="text-white font-medium">Accenture</span>.
-        </p>
-
-        {/* Social Links */}
-        <div className="mt-5 flex items-center gap-4">
-          <a
-            href="https://github.com/009-KumarJi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 hover:text-white transition-colors"
-            aria-label="GitHub"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/krishna-kumar-975b25186/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 hover:text-[#0a66c2] transition-colors"
-            aria-label="LinkedIn"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a
-            href="mailto:krishna902kumar@gmail.com"
-            className="text-gray-500 hover:text-[var(--accent)] transition-colors"
-            aria-label="Email"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-            </svg>
-          </a>
-        </div>
-
-        {/* BUTTONS */}
-        <div className="mt-6 flex gap-3 justify-center md:justify-start flex-wrap w-full">
-          <a href="#projects">
-            <button className="px-4 sm:px-6 py-3 bg-[var(--accent)] text-black font-medium rounded-lg hover:opacity-90 transition">
-              View Projects
+          {/* Protocol Tabs */}
+          <div className="flex items-center border-b border-white/[0.08] bg-[#08090c] font-mono text-xs">
+            <button
+              onClick={() => handleTabChange("post")}
+              type="button"
+              className={`px-4 py-2 border-b-2 flex items-center gap-1.5 transition-colors ${
+                activeTab === "post"
+                  ? "border-[#10b981] text-[#10b981] bg-[#0d1117]"
+                  : "border-transparent text-gray-400 hover:text-white"
+              }`}
+            >
+              <span className="text-[10px] font-bold text-[#00f2fe]">POST</span> /inference/scan
             </button>
-          </a>
+            <button
+              onClick={() => handleTabChange("health")}
+              type="button"
+              className={`px-4 py-2 border-b-2 flex items-center gap-1.5 transition-colors ${
+                activeTab === "health"
+                  ? "border-[#10b981] text-[#10b981] bg-[#0d1117]"
+                  : "border-transparent text-gray-400 hover:text-white"
+              }`}
+            >
+              <span className="text-[10px] font-bold text-[#10b981]">GET</span> /healthz
+            </button>
+            <button
+              onClick={() => handleTabChange("ws")}
+              type="button"
+              className={`px-4 py-2 border-b-2 flex items-center gap-1.5 transition-colors ${
+                activeTab === "ws"
+                  ? "border-[#10b981] text-[#10b981] bg-[#0d1117]"
+                  : "border-transparent text-gray-400 hover:text-white"
+              }`}
+            >
+              <span className="text-[10px] font-bold text-[#f59e0b]">WS</span> /events
+            </button>
+          </div>
 
-          <a
-            href="/krishna_kumar.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 sm:px-6 py-3 border border-gray-600 rounded-lg hover:border-gray-400 transition flex items-center gap-2"
-          >
-            View Resume
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
-          </a>
-        </div>
-      </motion.div>
+          {/* Micro Telemetry Chips */}
+          <div className="px-4 py-2 bg-[#08090c]/50 border-b border-white/[0.04] flex flex-wrap items-center justify-between gap-1 text-[10px] font-mono text-gray-400">
+            <span>PROTO: HTTP/2.0 TLSv1.3</span>
+            <span>
+              TOKEN_BUCKET:{" "}
+              <span className="text-[#00f2fe] font-mono">
+                {scenario === "injection" ? "997/1000" : scenario === "pii" ? "996/1000" : "998/1000"}
+              </span>
+            </span>
+            <span>
+              {scenario === "injection" ? (
+                <span className="text-red-400 font-bold">TRACE: 0x99AB81C4: BLOCKED (403)</span>
+              ) : scenario === "pii" ? (
+                <span className="text-[#f59e0b] font-bold">TRACE: 0x99AB81C4: REDACTED (200)</span>
+              ) : (
+                <span className="text-[#10b981] font-bold">TRACE: 0x99AB81C4: PASS (0.42ms)</span>
+              )}
+            </span>
+          </div>
 
-      {/* DESKTOP IMAGE */}
-      <div className="hidden md:flex justify-end">
-        <ProfileTerminal />
+          {/* Live JSON Terminal Console */}
+          <div className="p-4 bg-[#08090c] font-mono text-xs text-gray-200 min-h-[230px] flex flex-col justify-between overflow-x-auto select-all">
+            <pre className="text-[12px] leading-relaxed whitespace-pre">
+              {activeTab === "health" ? (
+                `{
+  "service": "kk-mesh-ingress",
+  "status": "HEALTHY",
+  "uptime_seconds": 2491200,
+  "circuit_breaker": "CLOSED",
+  "db_pool_active": 14,
+  "dynamo_pitr_status": "SYNCHRONIZED"
+}`
+              ) : activeTab === "ws" ? (
+                `{
+  "event": "SOCKET_HEARTBEAT",
+  "connections": 104289,
+  "shards": 8,
+  "crdt_sync_lag_ms": 1.2,
+  "cluster_state": "SYNCHRONIZED",
+  "redis_presence_nodes": 6
+}`
+              ) : scenario === "injection" ? (
+                `{
+  "status": 403,
+  "trace_id": "trc_inject_99ab81c4",
+  "guardrail_latency": "0.28ms",
+  "blocked": true,
+  "trigger": "JAILBREAK_TOKEN_DETECTED",
+  "regex_rule": "PROMPT_ESCAPE_V4",
+  "threat_level": "CRITICAL",
+  "upstream_route": "HALTED_AT_INGRESS_PROXY"
+}`
+              ) : scenario === "pii" ? (
+                `{
+  "status": 200,
+  "trace_id": "trc_pii_99ab81c4",
+  "guardrail_latency": "0.64ms",
+  "blocked": false,
+  "pii_redactions": 2,
+  "redacted_entities": ["AWS_ACCESS_KEY", "IPV4_ADDR"],
+  "sanitized_payload": "SENT_TO_BEDROCK",
+  "upstream_route": "ap-south-1.bedrock.aws"
+}`
+              ) : (
+                `{
+  "status": 200,
+  "trace_id": "trc_99ab81c4ee01",
+  "guardrail_latency": "0.42ms",
+  "blocked": false,
+  "model": "claude-3-5-sonnet",
+  "regex_preflight": "PASSED",
+  "pii_redactions": 0,
+  "upstream_route": "ap-south-1.bedrock.aws"
+}`
+              )}
+            </pre>
+          </div>
+
+          {/* Interactive Simulation Triggers */}
+          <div className="p-3 bg-[#12161f] border-t border-white/[0.08] flex flex-col gap-2">
+            <div className="font-mono text-[10px] text-gray-400 uppercase tracking-wider px-1">
+              SIMULATION ENGINE // INJECT SCENARIOS
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-xs">
+              <button
+                onClick={handleSimulateInjection}
+                type="button"
+                className="px-2.5 py-1.5 rounded bg-[#0d1117] hover:bg-red-950/40 border border-red-500/30 hover:border-red-500 text-red-400 text-[11px] text-left transition-colors flex items-center gap-1.5"
+              >
+                <span>⚠️</span>
+                <span className="truncate">Simulate Attack</span>
+              </button>
+              <button
+                onClick={handleSimulatePii}
+                type="button"
+                className="px-2.5 py-1.5 rounded bg-[#0d1117] hover:bg-yellow-950/40 border border-[#f59e0b]/30 hover:border-[#f59e0b] text-[#f59e0b] text-[11px] text-left transition-colors flex items-center gap-1.5"
+              >
+                <span>🛡️</span>
+                <span className="truncate">Simulate PII</span>
+              </button>
+              <button
+                onClick={handleSimulateClean}
+                type="button"
+                className="px-2.5 py-1.5 rounded bg-[#0d1117] hover:bg-emerald-950/40 border border-[#10b981]/30 hover:border-[#10b981] text-[#10b981] text-[11px] text-left transition-colors flex items-center gap-1.5"
+              >
+                <span>✓</span>
+                <span className="truncate">Reset 200 OK</span>
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </Section>
+    </section>
   );
 }

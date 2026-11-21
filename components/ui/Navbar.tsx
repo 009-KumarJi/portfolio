@@ -1,18 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useTelemetry } from "@/components/context/TelemetryContext";
+import { AudioEngine } from "@/lib/audio";
 
 const navLinks = [
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
+  { label: "01 Architecture", href: "#architecture" },
+  { label: "02 Metrics", href: "#metrics" },
+  { label: "03 Capabilities", href: "#capabilities" },
+  { label: "04 Experience", href: "#experience" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { openCmd, sfxEnabled, toggleSfx } = useTelemetry();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -22,117 +24,165 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      <header
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-[#0b0d10]/80 backdrop-blur-xl border-b border-gray-800/50 shadow-lg shadow-black/20"
-            : "bg-transparent"
+            ? "bg-[#08090c]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl shadow-black/60"
+            : "bg-[#08090c]/70 backdrop-blur-md border-b border-white/[0.05]"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          {/* Logo / Name */}
-          <a href="#" className="flex items-center gap-2 group">
-            <span className="text-lg font-bold tracking-tight">
-              Krishna
-              <span className="text-[var(--accent)]">.</span>
-            </span>
-          </a>
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+          {/* Brand Tag & Edge Telemetry */}
+          <div className="flex items-center gap-3 shrink-0">
+            <a
+              href="#"
+              onClick={() => AudioEngine.click(800)}
+              className="flex items-center gap-2 group"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#10b981] shadow-[0_0_10px_rgba(16,185,129,0.7)]" />
+              </span>
+              <span className="font-mono text-sm sm:text-base font-bold text-[#10b981] tracking-tight group-hover:text-[#34d399] transition-colors">
+                KK://systems
+              </span>
+            </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+            {/* Edge Telemetry Badge */}
+            <div className="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded bg-[#0d1117] border border-white/[0.08] font-mono text-xs text-gray-400">
+              <span className="text-[#10b981] font-bold animate-pulse">●</span>
+              <span>ap-south-1</span>
+              <span className="text-gray-600">|</span>
+              <span className="text-[#10b981] font-medium">200 OK</span>
+              <span className="text-gray-600">|</span>
+              <span>UP: 99.98%</span>
+              <span className="text-gray-600">|</span>
+              <span className="text-[#00f2fe]">p99: 12ms</span>
+            </div>
+          </div>
+
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-6 font-mono text-xs tracking-wide">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-gray-400 hover:text-white transition-colors duration-200 relative group"
+                onClick={() => AudioEngine.click(1000)}
+                className="text-gray-400 hover:text-white transition-colors relative py-1 group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--accent)] transition-all duration-200 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#10b981] transition-all duration-200 group-hover:w-full" />
               </a>
             ))}
-          </div>
+          </nav>
 
-          {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Actions: SFX Toggle, Resume & ⌘K Button */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* Audio Toggle Button */}
+            <button
+              onClick={toggleSfx}
+              type="button"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] font-mono text-xs text-gray-400 hover:text-white transition-colors"
+              title="Toggle Telemetry Audio Feedback"
+            >
+              <span className={sfxEnabled ? "text-[#10b981]" : "text-gray-500"}>
+                {sfxEnabled ? "🔊" : "🔇"}
+              </span>
+              <span>{sfxEnabled ? "[SFX: ACTIVE]" : "[SFX: MUTED]"}</span>
+            </button>
+
+            {/* Resume Button */}
             <a
               href="/krishna_kumar.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm px-4 py-2 border border-gray-700 rounded-lg hover:border-gray-500 transition-colors duration-200"
+              onClick={() => AudioEngine.click(1200)}
+              className="hidden md:inline-flex items-center px-3 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] hover:border-white/20 font-mono text-xs text-gray-300 hover:text-white transition-colors"
             >
-              Resume ↗
+              <span className="text-gray-500 mr-1.5">GET</span> /resume.pdf ↗
             </a>
-            <a
-              href="mailto:krishna902kumar@gmail.com"
-              className="text-sm px-4 py-2 bg-[var(--accent)] text-black font-medium rounded-lg hover:opacity-90 transition-opacity duration-200"
+
+            {/* ⌘K Command Palette Button */}
+            <button
+              onClick={openCmd}
+              type="button"
+              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded bg-[#10b981] hover:bg-[#34d399] text-[#08090c] font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.35)] active:translate-y-px"
             >
-              Contact
-            </a>
+              <span className="bg-[#08090c]/20 px-1 py-0.5 rounded text-[10px]">⌘K</span>
+              <span>Connect</span>
+            </button>
+
+            {/* Mobile Hamburger Toggle */}
+            <button
+              onClick={() => {
+                AudioEngine.click(800);
+                setMobileOpen(!mobileOpen);
+              }}
+              className="lg:hidden flex flex-col gap-1.5 p-2 rounded hover:bg-white/5 text-gray-300"
+              aria-label="Toggle Navigation Menu"
+            >
+              <span
+                className={`w-5 h-[2px] bg-white transition-transform ${
+                  mobileOpen ? "rotate-45 translate-y-2" : ""
+                }`}
+              />
+              <span
+                className={`w-5 h-[2px] bg-white transition-opacity ${
+                  mobileOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`w-5 h-[2px] bg-white transition-transform ${
+                  mobileOpen ? "-rotate-45 -translate-y-2" : ""
+                }`}
+              />
+            </button>
           </div>
-
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className="w-5 h-[2px] bg-white block"
-            />
-            <motion.span
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="w-5 h-[2px] bg-white block"
-            />
-            <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className="w-5 h-[2px] bg-white block"
-            />
-          </button>
         </div>
-      </nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+        {/* Mobile Slide-down Drawer */}
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 w-full z-40 bg-[#0b0d10]/95 backdrop-blur-xl border-b border-gray-800 md:hidden"
-          >
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-gray-300 hover:text-white transition-colors py-2 text-lg"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="flex gap-3 pt-4 border-t border-gray-800">
-                <a
-                  href="/krishna_kumar.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 text-center text-sm px-4 py-2.5 border border-gray-700 rounded-lg hover:border-gray-500 transition"
-                >
-                  Resume ↗
-                </a>
-                <a
-                  href="mailto:krishna902kumar@gmail.com"
-                  className="flex-1 text-center text-sm px-4 py-2.5 bg-[var(--accent)] text-black font-medium rounded-lg hover:opacity-90 transition"
-                >
-                  Contact
-                </a>
-              </div>
+          <div className="lg:hidden bg-[#08090c]/98 border-b border-white/10 px-4 py-5 flex flex-col gap-3 font-mono text-sm animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="flex items-center justify-between py-2 border-b border-white/[0.08] text-xs text-gray-400">
+              <span className="text-[#10b981]">● CLUSTER: ap-south-1</span>
+              <span>p99: 12ms</span>
             </div>
-          </motion.div>
+
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => {
+                  AudioEngine.click(1000);
+                  setMobileOpen(false);
+                }}
+                className="text-gray-300 hover:text-[#10b981] py-2 border-b border-white/[0.04] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+
+            <div className="flex gap-2 pt-2">
+              <a
+                href="/krishna_kumar.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center py-2 rounded bg-[#0d1117] border border-white/10 text-xs text-gray-300 hover:text-white"
+              >
+                GET /resume.pdf ↗
+              </a>
+              <button
+                onClick={() => {
+                  toggleSfx();
+                }}
+                className="px-3 py-2 rounded bg-[#0d1117] border border-white/10 text-xs text-gray-400"
+              >
+                {sfxEnabled ? "SFX: ON" : "SFX: OFF"}
+              </button>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+      </header>
     </>
   );
 }

@@ -1,52 +1,59 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Section from "../ui/Section";
 
 export default function Education() {
   return (
-    <Section id="education" className="pb-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
-      >
-        <h2 className="text-3xl font-bold mb-2 tracking-tight">Education</h2>
-        <p className="text-gray-400 mb-10">Academic background.</p>
-      </motion.div>
+    <section
+      id="education"
+      className="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 py-12"
+    >
+      <div className="border-b border-white/[0.08] pb-4 mb-6">
+        <div className="font-mono text-xs text-[#00f2fe] tracking-widest uppercase flex items-center gap-2">
+          <span>ACADEMIC FOUNDATION</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-[#00f2fe] inline-block" />
+        </div>
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">
+          Education &amp; Engineering Degree
+        </h2>
+      </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className="bg-[var(--bg-card)] border border-gray-800 rounded-xl p-6 md:p-8 hover:border-gray-700 transition-colors duration-300"
+        transition={{ duration: 0.3 }}
+        className="rounded-xl bg-[#0d1117] border border-white/[0.08] p-5 sm:p-6 hover:border-white/20 transition-all duration-300"
       >
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h3 className="text-lg md:text-xl font-semibold text-white">
-              Bachelor of Engineering
-            </h3>
+            <div className="flex items-center gap-2">
+              <span className="text-[#10b981] font-mono text-sm">▶</span>
+              <h3 className="text-base sm:text-lg font-semibold text-white">
+                Bachelor of Engineering (B.E.)
+              </h3>
+            </div>
             <a
               href="https://www.ietdavv.edu.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 mt-1 block hover:text-[var(--accent)] transition-colors"
+              className="text-xs sm:text-sm text-gray-400 mt-1 block hover:text-[#00f2fe] transition-colors font-mono"
             >
-              Institute of Engineering & Technology, Devi Ahilya Vishwavidyalaya ↗
+              Institute of Engineering &amp; Technology, Devi Ahilya Vishwavidyalaya (IET-DAVV) ↗
             </a>
-            <p className="text-gray-500 text-sm mt-1">Indore, Madhya Pradesh, India</p>
+            <p className="text-gray-400 text-xs mt-1 font-mono">
+              Indore, Madhya Pradesh, India
+            </p>
           </div>
 
-          <div className="flex flex-row md:flex-col items-start md:items-end gap-3 md:gap-1">
-            <span className="text-sm text-gray-400">2021 – 2025</span>
-            <span className="text-sm px-3 py-1 bg-[var(--accent-muted)] text-[var(--accent)] rounded-full font-medium">
+          <div className="flex sm:flex-col items-start sm:items-end gap-2 font-mono text-xs">
+            <span className="text-gray-400">2021 – 2025</span>
+            <span className="px-2.5 py-1 bg-[#10b981]/10 border border-[#10b981]/30 text-[#10b981] rounded font-bold">
               CGPA: 7.49
             </span>
           </div>
         </div>
       </motion.div>
-    </Section>
+    </section>
   );
 }
