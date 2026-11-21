@@ -348,7 +348,7 @@ export default function Hero() {
                   <pre className="text-[11px] leading-relaxed text-gray-300">
 {`{
   "operator": "Krishna Kumar",
-  "role": "Senior Distributed Systems & GenAI Platform Architect",
+  "role": "Backend, GenAI & Distributed Systems Engineer",
   "clearance": "PRODUCTION_ROOT",
   "location": "Bengaluru, India (UTC+5:30)",
   "cloud_fabric": "AWS ap-south-1 ↔ OCI Hybrid",

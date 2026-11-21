@@ -426,7 +426,7 @@ export const rawYamlConfig = `01_agentic_ai_and_mcp:
 export const rawJsonConfig = JSON.stringify(
   {
     architect: "Krishna Kumar",
-    system_role: "Senior Backend & Distributed Systems Engineer",
+    system_role: "Backend, GenAI & Distributed Systems Engineer",
     protocols: ["HTTP/2", "gRPC", "WebSocket", "SSE", "Streamable HTTP (MCP)"],
     runtimes: [
       "Python 3.12 / 3.14 (Asyncio, uvloop, FastAPI)",
