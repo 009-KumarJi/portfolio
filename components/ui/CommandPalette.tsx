@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTelemetry } from "@/components/context/TelemetryContext";
 import { AudioEngine } from "@/lib/audio";
+import { rawYamlConfig } from "@/data/skills";
 
 interface CommandItem {
   id: string;
@@ -17,23 +18,6 @@ export default function CommandPalette() {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const rawYamlConfig = `01_runtime_and_core:
-  - engine: "Python 3.12 (FastAPI, Asyncio, Pydantic v2, uvloop, Celery)"
-  - low_overhead: "Go 1.22+ (Goroutines, Channels, Gin)"
-  - node_edge: "Node.js 22 LTS / TypeScript 5.4"
-02_event_streaming_and_queues:
-  - bus: "Apache Kafka (Partitions, Lag Sync)"
-  - realtime: "Redis Streams & Pub/Sub, AWS SQS"
-03_data_persistence:
-  - rel_vector: "PostgreSQL 16 + pgvector (HNSW)"
-  - nosql: "MongoDB, DynamoDB Single-Table"
-04_genai_and_llmops:
-  - inference: "AWS Bedrock (Claude 3.5), Strands SDK, MCP"
-  - agents: "LangChain, Qdrant Vector Mesh"
-05_cloud_and_topology:
-  - aws_fabric: "ECS Fargate, Lambda SnapStart, VPC Lattice"
-  - oci_fabric: "Oracle Cloud Infrastructure (2x Architect)"`;
 
   const commands: CommandItem[] = [
     {
