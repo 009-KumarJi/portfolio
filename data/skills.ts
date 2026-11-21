@@ -60,7 +60,7 @@ export const capabilityCategories: CapabilityCategory[] = [
     tagline:
       "Serverless orchestration, VPC Lattice routing, Step Functions Distributed Map & Python CDK",
     statusBadge: {
-      label: "● PROD ARCHITECT",
+      label: "● PROD DEPLOYED",
       variant: "cyan",
     },
     technologies: [
@@ -425,7 +425,7 @@ export const rawYamlConfig = `01_agentic_ai_and_mcp:
 
 export const rawJsonConfig = JSON.stringify(
   {
-    architect: "Krishna Kumar",
+    engineer: "Krishna Kumar",
     system_role: "Backend, GenAI & Distributed Systems Engineer",
     protocols: ["HTTP/2", "gRPC", "WebSocket", "SSE", "Streamable HTTP (MCP)"],
     runtimes: [

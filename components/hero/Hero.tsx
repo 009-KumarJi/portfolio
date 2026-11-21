@@ -143,7 +143,7 @@ export default function Hero() {
 
           {/* Subheading */}
           <p className="text-base sm:text-lg text-gray-400 max-w-2xl leading-relaxed">
-            Senior Systems &amp; Distributed Backend Engineer specializing in sub-millisecond AI safety guardrails, distributed ML streaming pipelines, zero-trust inference proxies, and multi-region cloud topology across AWS &amp; OCI.
+            Backend, GenAI &amp; Distributed Systems Engineer building sub-millisecond AI safety guardrails, distributed ML streaming pipelines, zero-trust inference proxies, and multi-region cloud topology across AWS &amp; OCI.
           </p>
 
           {/* CTA & Quick CLI Trigger */}

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://krishna.novitrail.com"),
   title: "Krishna Kumar | Backend & Distributed Systems Engineer — GenAI Infrastructure",
   description:
-    "Senior Systems & Distributed Backend Engineer architecting sub-millisecond AI safety guardrails, distributed ML streaming pipelines, zero-trust inference proxies, and multi-region AWS & OCI infrastructure.",
+    "Backend, GenAI & Distributed Systems Engineer building sub-millisecond AI safety guardrails, distributed ML streaming pipelines, zero-trust inference proxies, and multi-region AWS & OCI infrastructure.",
   keywords: [
     "Backend Engineer",
     "Distributed Systems",
