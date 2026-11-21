@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTelemetry } from "@/components/context/TelemetryContext";
 import { AudioEngine } from "@/lib/audio";
 
@@ -101,16 +102,15 @@ export default function Navbar() {
               <span>{sfxEnabled ? "[SFX: ACTIVE]" : "[SFX: MUTED]"}</span>
             </button>
 
-            {/* Resume Button */}
-            <a
-              href="/krishna_kumar.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Resume Page Link */}
+            <Link
+              href="/resume"
               onClick={() => AudioEngine.click(1200)}
-              className="hidden md:inline-flex items-center px-3 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] hover:border-white/20 font-mono text-xs text-gray-300 hover:text-white transition-colors"
+              className="hidden md:inline-flex items-center px-3 py-1 rounded bg-[#0d1117] hover:bg-[#161b22] border border-white/[0.08] hover:border-[#10b981]/40 font-mono text-xs text-gray-300 hover:text-white transition-colors"
             >
-              <span className="text-gray-500 mr-1.5">GET</span> /resume.pdf ↗
-            </a>
+              <span className="text-[#10b981] mr-1.5 font-bold">📄</span>
+              <span>[GET /resume]</span>
+            </Link>
 
             {/* ⌘K Command Palette Button */}
             <button
@@ -173,14 +173,16 @@ export default function Navbar() {
             ))}
 
             <div className="flex gap-2 pt-2">
-              <a
-                href="/krishna_kumar.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/resume"
+                onClick={() => {
+                  AudioEngine.click(1200);
+                  setMobileOpen(false);
+                }}
                 className="flex-1 text-center py-2 rounded bg-[#0d1117] border border-white/10 text-xs text-gray-300 hover:text-white"
               >
-                GET /resume.pdf ↗
-              </a>
+                📄 GET /resume
+              </Link>
               <button
                 onClick={() => {
                   toggleSfx();

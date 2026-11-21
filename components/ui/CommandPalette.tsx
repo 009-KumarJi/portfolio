@@ -88,7 +88,17 @@ export default function CommandPalette() {
     },
     {
       id: "view-resume",
-      label: "View Resume PDF",
+      label: "Open Dedicated Resume Screen",
+      detail: "GET /resume (Interactive Web + PDF Canvas)",
+      category: "ROUTE",
+      action: () => {
+        closeCmd();
+        window.location.href = "/resume";
+      },
+    },
+    {
+      id: "download-resume",
+      label: "Direct Download Resume PDF",
       detail: "GET /krishna_kumar.pdf",
       category: "ACTION",
       action: () => {
